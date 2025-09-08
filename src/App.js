@@ -1328,24 +1328,24 @@ const FinancialCalculatorApp = () => {
         <div className="header-content">
           <div className="logo">
             <div className="logo-icon">🧮</div>
-            <h1>Financial Calculator Hub</h1>
+            <h1>Calculator Hub</h1>
           </div>
-          <p className="tagline">Professional financial planning tools for everyone</p>
+          <p className="tagline">Professional planning tools for everyone</p>
         </div>
       </header>
 
       {/* Hero Stats Section */}
       <section className="hero-stats">
         <div className="stats-container">
-          <h1 className="hero-title">Professional Financial Calculator Suite</h1>
+          <h1 className="hero-title">Professional Calculator Suite</h1>
           <p className="hero-subtitle">
-            Free, powerful financial calculators based on proven mathematical principles. 
+            Free, powerful calculators based on proven mathematical principles. 
             Build wealth, eliminate debt, and achieve your money goals faster.
           </p>
           
           <div className="stats-row">
-            <Counter target={25} label="Financial Tools" suffix="+" />
-            <Counter target={500000} label="Users Helped" />
+            <Counter target={20} label="Calculator Tools" suffix="+" />
+            <Counter target={1000} label="Users Helped" />
             <Counter target={100} label="% Free Forever" suffix="%" />
           </div>
         </div>
