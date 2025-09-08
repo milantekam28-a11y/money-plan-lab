@@ -1,89 +1,374 @@
 import React, { useState, useEffect } from 'react';
 
 const FinancialCalculatorApp = () => {
-  const [activeCategory, setActiveCategory] = useState('budget');
+  const [activeCategory, setActiveCategory] = useState('debt');
   const [activeCalculator, setActiveCalculator] = useState('emi');
   const [isLoading, setIsLoading] = useState(true);
   const [animateCounter, setAnimateCounter] = useState(false);
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   useEffect(() => {
-    // Simulate loading
     setTimeout(() => {
       setIsLoading(false);
       setAnimateCounter(true);
-    }, 2000);
+    }, 1500);
   }, []);
 
   const categories = {
-    budget: {
-      name: 'Budget & Debt',
-      icon: '💰',
-      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    debt: {
+      name: 'Get Out of Debt',
+      icon: '🔗💥',
+      description: 'Break free from the cycle of debt and reclaim your financial freedom with proven debt elimination strategies',
+      color: 'linear-gradient(135deg, #dc2626, #b91c1c)',
       calculators: [
-        { id: 'emi', name: 'EMI Calculator', desc: 'Monthly loan payments', popular: true },
-        { id: 'budget', name: '50/30/20 Budget', desc: 'Budget allocation rule' },
-        { id: 'debt-payoff', name: 'Debt Payoff', desc: 'Avalanche vs Snowball', featured: true },
-        { id: 'emergency-fund', name: 'Emergency Fund', desc: 'Emergency savings goal' }
+        {
+          id: 'debt-payoff',
+          title: 'General Debt Payoff',
+          subtitle: 'Ultimate Debt Destroyer',
+          description: 'Calculate the fastest way to pay off all your debts using avalanche or snowball methods with detailed payment schedules.',
+          icon: '🔥',
+          features: ['Multiple debt strategies', 'Interest savings calculator', 'Payment schedule timeline'],
+          tags: ['Most Popular', 'Debt Avalanche', 'Debt Snowball'],
+          featured: true,
+          url: 'debt-payoff.html'
+        },
+        {
+          id: 'credit-card',
+          title: 'Credit Card Debt',
+          subtitle: 'High-Interest Killer',
+          description: 'Calculate minimum payments vs. aggressive payoff strategies for credit cards with compound interest analysis.',
+          icon: '💳',
+          features: ['APR impact analysis', 'Balance transfer options', 'Payment optimization'],
+          tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
+          url: 'credit-card-debt.html'
+        },
+        {
+          id: 'student-loan',
+          title: 'Student Loan Payoff',
+          subtitle: 'Education Debt Freedom',
+          description: 'Accelerate your student loan freedom with extra payment strategies, refinancing analysis, and forgiveness programs.',
+          icon: '🎓',
+          features: ['Refinancing comparison', 'Forgiveness program eligibility', 'Extra payment impact'],
+          tags: ['Federal Loans', 'PSLF', 'Refinancing'],
+          url: 'student-loan.html'
+        },
+        {
+          id: 'car-loan',
+          title: 'Car Loan Calculator',
+          subtitle: 'Auto Financing Tool',
+          description: 'Compare auto loan terms, calculate payments, and see the impact of down payments on your car financing.',
+          icon: '🚗',
+          features: ['Payment comparison', 'Down payment analysis', 'Trade-in value impact'],
+          tags: ['Auto Loan', 'Down Payment', 'Trade-in'],
+          url: 'car-loan.html'
+        },
+        {
+          id: 'medical-debt',
+          title: 'Medical Debt Calculator',
+          subtitle: 'Healthcare Bill Manager',
+          description: 'Handle unexpected medical bills with smart planning. Calculate payment plans, negotiate discounts, and protect your credit.',
+          icon: '🏥',
+          features: ['Payment plan options', 'Negotiation strategies', 'Credit protection tips'],
+          tags: ['Payment Plans', 'Negotiation', 'Credit Protection'],
+          url: 'medical_debt_calculator.html'
+        }
       ]
     },
-    loans: {
-      name: 'Loans & Credit',
-      icon: '💳',
-      gradient: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+    budget: {
+      name: 'Budgeting & Planning',
+      icon: '📊',
+      description: 'Build a solid financial foundation with smart budgeting tools and emergency planning strategies',
+      color: 'linear-gradient(135deg, #f59e0b, #d97706)',
       calculators: [
-        { id: 'credit-card', name: 'Credit Card Payoff', desc: 'Credit card debt calculator' },
-        { id: 'student-loan', name: 'Student Loan', desc: 'Education loan payoff' },
-        { id: 'car-loan', name: 'Car Loan', desc: 'Auto financing calculator' },
-        { id: 'medical-debt', name: 'Medical Debt', desc: 'Healthcare debt planning' }
+        {
+          id: 'budget',
+          title: 'Budget Calculator',
+          subtitle: 'Zero-Based Budgeting',
+          description: 'Create your zero-based budget using Dave Ramsey\'s proven budgeting principles and EveryDollar method.',
+          icon: '📋',
+          features: ['Income vs. expenses tracking', 'Category recommendations', 'Surplus/deficit analysis'],
+          tags: ['Essential', 'Zero-Based', 'EveryDollar'],
+          featured: true,
+          url: 'budget_calculator.html'
+        },
+        {
+          id: 'emergency-fund',
+          title: 'Emergency Fund Calculator',
+          subtitle: 'Financial Safety Net',
+          description: 'Calculate how much you need in your emergency fund based on your monthly expenses and family situation.',
+          icon: '🛡️',
+          features: ['3-6 months expenses', 'Job stability factors', 'Savings timeline'],
+          tags: ['3-6 Months', 'Safety Net', 'Peace of Mind'],
+          url: 'emergency-fund.html'
+        },
+        {
+          id: 'savings-goal',
+          title: 'Savings Goal Calculator',
+          subtitle: 'Goal Achievement Tool',
+          description: 'Set and track your savings goals with detailed timelines and monthly contribution requirements.',
+          icon: '🎯',
+          features: ['Multiple goal tracking', 'Timeline optimization', 'Progress visualization'],
+          tags: ['Goal Setting', 'Progress Tracking', 'Motivation'],
+          url: 'savings-goal.html'
+        },
+        {
+          id: 'college-savings',
+          title: 'College Savings Calculator',
+          subtitle: 'Education Planning',
+          description: 'Calculate how much to save monthly for your child\'s college education without compromising retirement.',
+          icon: '🎓',
+          features: ['529 plan optimization', 'Education inflation factor', 'State tax benefits'],
+          tags: ['529 Plans', 'Education Savings', 'Tax Benefits'],
+          url: 'college-savings.html'
+        }
       ]
     },
     investment: {
       name: 'Investment & Retirement',
       icon: '📈',
-      gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+      description: 'Build wealth and plan for your golden years with compound interest and smart investment strategies',
+      color: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
       calculators: [
-        { id: 'compound-interest', name: 'Compound Interest', desc: 'Investment growth calculator', popular: true },
-        { id: 'retirement', name: 'Retirement Planner', desc: 'Retirement savings goal' },
-        { id: '401k', name: '401k Calculator', desc: '401k contribution planner' },
-        { id: 'roth-ira', name: 'Roth IRA', desc: 'Roth IRA calculator' }
+        {
+          id: 'compound-interest',
+          title: 'Compound Interest Calculator',
+          subtitle: 'The 8th Wonder of the World',
+          description: 'Visualize the power of compound interest with detailed charts and timeline projections.',
+          icon: '✨',
+          features: ['Visual growth charts', 'Different compounding frequencies', 'Einstein\'s favorite formula'],
+          tags: ['Einstein Quote', 'Magic of Math', 'Exponential Growth'],
+          popular: true,
+          url: 'compound-interest.html'
+        },
+        {
+          id: 'retirement',
+          title: 'Retirement Calculator',
+          subtitle: 'Retirement Planning Tool',
+          description: 'Determine how much you need to save monthly to reach your retirement goals and live comfortably.',
+          icon: '🏖️',
+          features: ['401k match optimization', 'Social Security planning', 'Withdrawal strategies'],
+          tags: ['401k Planning', 'Nest Egg', 'Social Security'],
+          url: 'retirement.html'
+        },
+        {
+          id: 'investment',
+          title: 'Investment Calculator',
+          subtitle: 'Compound Interest Power',
+          description: 'Calculate how your investments can grow with compound interest using historically proven return rates.',
+          icon: '📊',
+          features: ['Historical market returns', 'Regular contribution tracking', 'Inflation adjustment'],
+          tags: ['Popular', 'Compound Interest', 'Long-term Growth'],
+          url: 'investment.html'
+        },
+        {
+          id: '401k',
+          title: '401k Calculator',
+          subtitle: 'Employer Match Maximizer',
+          description: 'Optimize your 401k contributions to maximize employer matching and tax benefits.',
+          icon: '💼',
+          features: ['Employer match calculator', 'Tax savings analysis', 'Contribution limits tracking'],
+          tags: ['Employer Match', 'Tax Benefits', 'Free Money'],
+          url: '401k-calculator.html'
+        },
+        {
+          id: 'roth-ira',
+          title: 'Roth IRA Calculator',
+          subtitle: 'Tax-Free Growth',
+          description: 'Calculate the tax-free growth potential of Roth IRA contributions vs. traditional IRA.',
+          icon: '🪙',
+          features: ['Tax-free withdrawals', 'Roth vs. Traditional comparison', 'Income limit calculator'],
+          tags: ['Tax-Free', 'Roth IRA', 'Retirement'],
+          url: 'roth-ira.html'
+        },
+        {
+          id: 'net-worth',
+          title: 'Net Worth Calculator',
+          subtitle: 'Wealth Tracking Tool',
+          description: 'Calculate your total net worth by subtracting liabilities from assets to track your financial progress.',
+          icon: '💎',
+          features: ['Asset categorization', 'Liability tracking', 'Progress monitoring'],
+          tags: ['Wealth Tracking', 'Assets vs Debts', 'Progress'],
+          url: 'net-worth.html'
+        }
       ]
     },
     realestate: {
-      name: 'Real Estate',
+      name: 'Real Estate & Housing',
       icon: '🏠',
-      gradient: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
+      description: 'Make smart decisions about your biggest investment with comprehensive property analysis tools',
+      color: 'linear-gradient(135deg, #10b981, #059669)',
       calculators: [
-        { id: 'mortgage', name: 'Mortgage Calculator', desc: 'Home loan calculator', featured: true },
-        { id: 'mortgage-payoff', name: 'Mortgage Payoff', desc: 'Early payoff calculator' },
-        { id: 'affordability', name: 'House Affordability', desc: 'Home buying budget' },
-        { id: 'rent-vs-buy', name: 'Rent vs Buy', desc: 'Rent vs buy comparison' }
+        {
+          id: 'mortgage',
+          title: 'Mortgage Calculator',
+          subtitle: 'Home Loan Analyzer',
+          description: 'Calculate monthly mortgage payments including principal, interest, taxes, insurance (PITI) and PMI.',
+          icon: '🏡',
+          features: ['PITI breakdown', 'PMI calculation', 'Amortization schedule'],
+          tags: ['Essential', 'PITI Calculator', 'Home Buying'],
+          featured: true,
+          url: 'mortgage.html'
+        },
+        {
+          id: 'mortgage-payoff',
+          title: 'Mortgage Payoff Calculator',
+          subtitle: 'Early Payoff Planner',
+          description: 'See how extra principal payments can save you thousands and help you own your home sooner.',
+          icon: '🎯',
+          features: ['Interest savings calculation', 'Time reduction analysis', 'Payment schedule optimization'],
+          tags: ['Extra Payments', 'Interest Savings', 'Own Sooner'],
+          url: 'mortgage-payoff.html'
+        },
+        {
+          id: 'house-affordability',
+          title: 'House Affordability Calculator',
+          subtitle: 'Smart Buying Guide',
+          description: 'Determine how much house you can afford based on income, debts, and down payment.',
+          icon: '🧮',
+          features: ['28/36 rule application', 'DTI consideration', 'Down payment impact'],
+          tags: ['28/36 Rule', 'Safe Buying', 'Budget Planning'],
+          url: 'house-affordability.html'
+        },
+        {
+          id: 'rent-vs-buy',
+          title: 'Rent vs Buy Calculator',
+          subtitle: 'Decision Analysis Tool',
+          description: 'Compare the long-term costs of renting vs. buying to make the best housing decision.',
+          icon: '⚖️',
+          features: ['Total cost comparison', 'Opportunity cost analysis', 'Break-even point'],
+          tags: ['Total Cost', 'Opportunity Cost', 'Smart Decision'],
+          url: 'rent-vs-buy.html'
+        },
+        {
+          id: 'refinance',
+          title: 'Refinance Calculator',
+          subtitle: 'Refinancing Analysis',
+          description: 'Determine if refinancing your mortgage makes financial sense with break-even analysis.',
+          icon: '🔄',
+          features: ['Break-even calculation', 'Closing cost analysis', 'Monthly savings potential'],
+          tags: ['Break-even', 'Lower Rates', 'Monthly Savings'],
+          url: 'refinance.html'
+        }
       ]
     },
-    planning: {
-      name: 'Savings & Planning',
-      icon: '📅',
-      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+    travel: {
+      name: 'Travel & Purchase Planning',
+      icon: '✈️',
+      description: 'Plan major purchases and dream vacations without breaking your budget or going into debt',
+      color: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
       calculators: [
-        { id: 'vacation', name: 'Vacation Savings', desc: 'Travel savings planner' },
-        { id: 'wedding', name: 'Wedding Budget', desc: 'Wedding expense planner' },
-        { id: 'major-purchase', name: 'Major Purchase', desc: 'Large purchase planner' },
-        { id: 'college-savings', name: 'College Savings', desc: 'Education savings plan' }
+        {
+          id: 'vacation-savings',
+          title: 'Vacation Savings Calculator',
+          subtitle: 'Dream Trip Planner',
+          description: 'Calculate how much to save monthly for your dream vacation without using credit cards.',
+          icon: '🧳',
+          features: ['Trip cost breakdown', 'Monthly savings plan', 'Timeline optimization'],
+          tags: ['Dream Vacation', 'No Debt', 'Travel Planning'],
+          url: 'vacation-savings.html'
+        },
+        {
+          id: 'major-purchase',
+          title: 'Major Purchase Planner',
+          subtitle: 'Smart Buying Strategy',
+          description: 'Plan for major purchases like appliances, furniture, or electronics without financing.',
+          icon: '🛒',
+          features: ['Cash vs. credit analysis', 'Savings timeline', 'Opportunity cost calculation'],
+          tags: ['Cash Purchase', 'No Interest', 'Smart Buying'],
+          url: 'major-purchase.html'
+        },
+        {
+          id: 'wedding-budget',
+          title: 'Wedding Budget Calculator',
+          subtitle: 'Special Day Planner',
+          description: 'Plan your perfect wedding without starting married life in debt with smart budgeting.',
+          icon: '💖',
+          features: ['Category budget allocation', 'Guest count impact', 'Savings timeline'],
+          tags: ['Wedding Planning', 'Debt-Free Start', 'Budget Breakdown'],
+          url: 'wedding-budget.html'
+        }
       ]
     },
     insurance: {
-      name: 'Insurance & Benefits',
+      name: 'Insurance & Protection',
       icon: '🛡️',
-      gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+      description: 'Protect your family and financial future with appropriate insurance coverage planning',
+      color: 'linear-gradient(135deg, #f59e0b, #d97706)',
       calculators: [
-        { id: 'life-insurance', name: 'Life Insurance', desc: 'Life insurance needs' },
-        { id: 'disability', name: 'Disability Insurance', desc: 'Disability coverage' },
-        { id: 'hsa', name: 'HSA Calculator', desc: 'Health savings account' },
-        { id: 'net-worth', name: 'Net Worth', desc: 'Net worth tracker' }
+        {
+          id: 'life-insurance',
+          title: 'Life Insurance Calculator',
+          subtitle: 'Family Protection Tool',
+          description: 'Calculate how much term life insurance you need to protect your family using proven mathematical formulas.',
+          icon: '👨‍👩‍👧‍👦',
+          features: ['Income replacement calculation', 'Debt coverage analysis', 'Future needs planning'],
+          tags: ['Essential', 'Term Life', 'Family Protection'],
+          featured: true,
+          url: 'life-insurance.html'
+        },
+        {
+          id: 'disability-insurance',
+          title: 'Disability Insurance Calculator',
+          subtitle: 'Income Protection',
+          description: 'Determine how much disability insurance you need to protect your income and lifestyle.',
+          icon: '♿',
+          features: ['Income replacement ratio', 'Short vs. long term', 'Employer benefit analysis'],
+          tags: ['Income Protection', 'Disability Coverage', 'Risk Management'],
+          url: 'disability-insurance.html'
+        },
+        {
+          id: 'hsa-calculator',
+          title: 'HSA Calculator',
+          subtitle: 'Health Savings Account',
+          description: 'Maximize your Health Savings Account contributions for triple tax advantages.',
+          icon: '🏥',
+          features: ['Triple tax advantage', 'Retirement healthcare planning', 'Investment growth potential'],
+          tags: ['Triple Tax Benefit', 'Health Savings', 'Retirement Tool'],
+          url: 'health-savings-account.html'
+        }
+      ]
+    },
+    utilities: {
+      name: 'Financial Utilities & Tools',
+      icon: '🔧',
+      description: 'Handy financial tools and calculators for everyday money management tasks',
+      color: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+      calculators: [
+        {
+          id: 'days-between',
+          title: 'Days Between Dates Calculator',
+          subtitle: 'Date Difference Tool',
+          description: 'Calculate the exact number of days between two dates for financial planning and goal tracking.',
+          icon: '📅',
+          features: ['Exact day calculation', 'Business days option', 'Age calculator'],
+          tags: ['Date Calculator', 'Planning Tool', 'Goal Tracking'],
+          popular: true,
+          url: 'days-between-dates.html'
+        },
+        {
+          id: 'tax-calculator',
+          title: 'Tax Calculator',
+          subtitle: 'Income Tax Estimator',
+          description: 'Estimate your federal and state income taxes based on your income and filing status.',
+          icon: '📋',
+          features: ['Federal tax calculation', 'State tax estimates', 'Deduction optimization'],
+          tags: ['Tax Planning', 'Income Tax', 'Deductions'],
+          url: 'tax-calculator.html'
+        },
+        {
+          id: 'tip-calculator',
+          title: 'Tip Calculator',
+          subtitle: 'Quick Tip Calculator',
+          description: 'Calculate tips and split bills easily for restaurants, services, and group dining.',
+          icon: '🧾',
+          features: ['Multiple tip percentages', 'Bill splitting', 'Service quality guide'],
+          tags: ['Tip Calculator', 'Bill Splitting', 'Dining'],
+          url: 'tip-calculator.html'
+        }
       ]
     }
   };
 
-  // Enhanced EMI Calculator Component
   const EMICalculator = () => {
     const [principal, setPrincipal] = useState('100000');
     const [rate, setRate] = useState('10');
@@ -218,9 +503,11 @@ const FinancialCalculatorApp = () => {
     );
   };
 
-  // Enhanced Budget Calculator
   const BudgetCalculator = () => {
     const [income, setIncome] = useState('5000');
+    const [needs, setNeeds] = useState('');
+    const [wants, setWants] = useState('');
+    const [debts, setDebts] = useState('');
     const [result, setResult] = useState(null);
     const [calculating, setCalculating] = useState(false);
 
@@ -229,11 +516,21 @@ const FinancialCalculatorApp = () => {
       
       setTimeout(() => {
         const monthlyIncome = parseFloat(income);
+        const needsAmount = parseFloat(needs) || 0;
+        const wantsAmount = parseFloat(wants) || 0;
+        const debtsAmount = parseFloat(debts) || 0;
+        
         if (monthlyIncome) {
+          const totalExpenses = needsAmount + wantsAmount + debtsAmount;
+          const leftover = monthlyIncome - totalExpenses;
+          
           setResult({
-            needs: (monthlyIncome * 0.5).toFixed(2),
-            wants: (monthlyIncome * 0.3).toFixed(2),
-            savings: (monthlyIncome * 0.2).toFixed(2)
+            totalIncome: monthlyIncome.toFixed(2),
+            totalExpenses: totalExpenses.toFixed(2),
+            leftover: leftover.toFixed(2),
+            needsPercent: ((needsAmount / monthlyIncome) * 100).toFixed(1),
+            wantsPercent: ((wantsAmount / monthlyIncome) * 100).toFixed(1),
+            debtsPercent: ((debtsAmount / monthlyIncome) * 100).toFixed(1)
           });
         }
         setCalculating(false);
@@ -244,8 +541,8 @@ const FinancialCalculatorApp = () => {
       <div className="calculator-container">
         <div className="calculator-header">
           <div className="calculator-icon">📊</div>
-          <h2>50/30/20 Budget Rule</h2>
-          <p>Plan your finances with the popular budgeting method</p>
+          <h2>Budget Calculator</h2>
+          <p>Create your zero-based budget using proven budgeting principles</p>
         </div>
         
         <div className="calculator-content">
@@ -259,6 +556,45 @@ const FinancialCalculatorApp = () => {
                   value={income}
                   onChange={(e) => setIncome(e.target.value)}
                   placeholder="5,000"
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label>Needs (Housing, Food, Utilities)</label>
+              <div className="input-wrapper">
+                <span className="input-prefix">$</span>
+                <input
+                  type="number"
+                  value={needs}
+                  onChange={(e) => setNeeds(e.target.value)}
+                  placeholder="2,500"
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label>Wants (Entertainment, Dining Out)</label>
+              <div className="input-wrapper">
+                <span className="input-prefix">$</span>
+                <input
+                  type="number"
+                  value={wants}
+                  onChange={(e) => setWants(e.target.value)}
+                  placeholder="1,500"
+                />
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label>Debt Payments</label>
+              <div className="input-wrapper">
+                <span className="input-prefix">$</span>
+                <input
+                  type="number"
+                  value={debts}
+                  onChange={(e) => setDebts(e.target.value)}
+                  placeholder="500"
                 />
               </div>
             </div>
@@ -284,40 +620,40 @@ const FinancialCalculatorApp = () => {
           
           {result && (
             <div className="result-section">
-              <h3>🎯 Your Budget Breakdown</h3>
+              <h3>🎯 Your Budget Analysis</h3>
               
               <div className="budget-breakdown">
-                <div className="budget-category needs">
-                  <div className="budget-header">
-                    <div className="budget-icon">🏠</div>
-                    <div className="budget-info">
-                      <h4>50% Needs</h4>
-                      <p>Rent, utilities, groceries, debt payments</p>
-                    </div>
-                  </div>
-                  <div className="budget-amount">${result.needs}</div>
-                </div>
-                
-                <div className="budget-category wants">
-                  <div className="budget-header">
-                    <div className="budget-icon">🎉</div>
-                    <div className="budget-info">
-                      <h4>30% Wants</h4>
-                      <p>Entertainment, dining out, hobbies</p>
-                    </div>
-                  </div>
-                  <div className="budget-amount">${result.wants}</div>
-                </div>
-                
-                <div className="budget-category savings">
+                <div className="budget-category income">
                   <div className="budget-header">
                     <div className="budget-icon">💰</div>
                     <div className="budget-info">
-                      <h4>20% Savings</h4>
-                      <p>Emergency fund, retirement, investments</p>
+                      <h4>Monthly Income</h4>
+                      <p>Your total after-tax income</p>
                     </div>
                   </div>
-                  <div className="budget-amount">${result.savings}</div>
+                  <div className="budget-amount">${result.totalIncome}</div>
+                </div>
+                
+                <div className="budget-category expenses">
+                  <div className="budget-header">
+                    <div className="budget-icon">📝</div>
+                    <div className="budget-info">
+                      <h4>Total Expenses</h4>
+                      <p>Needs + Wants + Debt payments</p>
+                    </div>
+                  </div>
+                  <div className="budget-amount">${result.totalExpenses}</div>
+                </div>
+                
+                <div className={`budget-category ${parseFloat(result.leftover) >= 0 ? 'surplus' : 'deficit'}`}>
+                  <div className="budget-header">
+                    <div className="budget-icon">{parseFloat(result.leftover) >= 0 ? '✅' : '⚠️'}</div>
+                    <div className="budget-info">
+                      <h4>{parseFloat(result.leftover) >= 0 ? 'Surplus' : 'Deficit'}</h4>
+                      <p>{parseFloat(result.leftover) >= 0 ? 'Money left for savings' : 'You\'re overspending'}</p>
+                    </div>
+                  </div>
+                  <div className="budget-amount">${result.leftover}</div>
                 </div>
               </div>
             </div>
@@ -383,8 +719,22 @@ const FinancialCalculatorApp = () => {
 
     return (
       <div className="stat-item">
+        <div className="stat-icon">
+          <span className="stat-icon-emoji">
+            {label.includes('Calculator') && '🧮'}
+            {label.includes('Users') && '👥'}
+            {label.includes('Saved') && '💰'}
+            {label.includes('Free') && '❤️'}
+          </span>
+        </div>
         <div className="stat-number">{formatNumber(count)}{suffix}</div>
         <div className="stat-label">{label}</div>
+        <div className="stat-description">
+          {label.includes('Calculator') && 'Comprehensive tools for every financial decision'}
+          {label.includes('Users') && 'Growing community of smart money managers'}
+          {label.includes('Saved') && 'Total savings achieved by our users'}
+          {label.includes('Free') && 'No hidden fees, ever'}
+        </div>
       </div>
     );
   };
@@ -397,19 +747,429 @@ const FinancialCalculatorApp = () => {
             <div className="logo-ring"></div>
             <div className="logo-center">🧮</div>
           </div>
-          <h2>Financial Calculator Hub</h2>
+          <h2>Money Plan Lab</h2>
           <p>Loading your financial tools...</p>
           <div className="loading-bar">
             <div className="loading-progress"></div>
           </div>
         </div>
+        <style jsx>{`
+          .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+          }
+
+          .loading-content {
+            text-align: center;
+            color: white;
+          }
+
+          .loading-logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+          }
+
+          .logo-ring {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+
+          .logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+          }
+
+          .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin: 24px auto;
+            overflow: hidden;
+          }
+
+          .loading-progress {
+            width: 0;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            animation: loading 1.5s ease-in-out infinite;
+          }
+
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+
+          @keyframes loading {
+            0% { width: 0; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+          }
+        `}</style>
       </div>
     );
   }
 
   return (
     <div className="app">
+      {/* Header */}
+      <header className="header">
+        <nav className="nav-container">
+          <a href="#" className="logo">
+            <span className="logo-icon">🧮</span>
+            Money Plan Lab
+          </a>
+          <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
+            <li className="nav-item"><a href="#calculators">Calculators</a></li>
+            <li className="nav-item"><a href="#features">Features</a></li>
+            <li className="nav-item"><a href="#about">About</a></li>
+            <li className="nav-item"><a href="#contact">Contact</a></li>
+          </ul>
+          <div 
+            className="mobile-toggle" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="floating-elements"></div>
+        <div className="hero-content">
+          <h1>Take Control of Your Financial Future</h1>
+          <p>Free, powerful financial calculators based on proven mathematical principles. Build wealth, eliminate debt, and achieve your money goals faster with our comprehensive suite of tools.</p>
+          <div className="cta-buttons">
+            <a href="#calculators" className="btn-primary">
+              <span className="btn-icon">🧮</span>
+              Start Calculating
+            </a>
+            <a href="#features" className="btn-secondary">
+              <span className="btn-icon">📈</span>
+              See Features
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted By Section */}
+      <section className="trusted-by">
+        <div className="trusted-content">
+          <p className="trusted-text">Trusted by Financial Professionals Worldwide</p>
+          <div className="trust-indicators">
+            <div className="trust-item">
+              <span className="trust-icon">🛡️</span>
+              <span>100% Secure</span>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">👥</span>
+              <span>500K+ Users</span>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">⭐</span>
+              <span>4.9/5 Rating</span>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">📱</span>
+              <span>Mobile Friendly</span>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">♾️</span>
+              <span>Free Forever</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="stats">
+        <div className="stats-container">
+          <div className="stats-grid">
+            <Counter target={25} label="Calculator Tools" suffix="+" />
+            <Counter target={500000} label="Users Helped" />
+            <Counter target={50000000} label="Dollars Saved" />
+            <Counter target={100} label="% Free Forever" suffix="%" />
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator Categories */}
+      <section className="calculators" id="calculators">
+        <div className="calculators-container">
+          <div className="section-header">
+            <h2 className="section-title">Complete Financial Calculator Suite</h2>
+            <p className="section-subtitle">Choose from our comprehensive collection of professional-grade financial tools designed to help you make smarter money decisions</p>
+          </div>
+
+          {Object.entries(categories).map(([key, category]) => (
+            <div key={key} className={`category-section ${key}-category`}>
+              <div className="category-header" style={{ background: category.color }}>
+                <div className="category-icon">{category.icon}</div>
+                <div className="category-info">
+                  <div className="category-title">{category.name}</div>
+                  <div className="category-description">{category.description}</div>
+                </div>
+              </div>
+              
+              <div className="calculator-grid">
+                {category.calculators.map((calc) => (
+                  <div 
+                    key={calc.id} 
+                    className="calculator-card"
+                    onClick={() => {
+                      if (calc.url) {
+                        window.open(calc.url, '_blank');
+                      } else if (calc.id === 'emi') {
+                        setActiveCalculator(calc.id);
+                        document.getElementById('calculator-display')?.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        setActiveCalculator(calc.id);
+                      }
+                    }}
+                  >
+                    <div className="card-content">
+                      <div className="card-header">
+                        <div className="card-icon" style={{ background: category.color }}>
+                          <span>{calc.icon}</span>
+                        </div>
+                        <div>
+                          <h3 className="card-title">{calc.title}</h3>
+                          <p className="card-subtitle">{calc.subtitle}</p>
+                        </div>
+                      </div>
+                      <p className="card-description">{calc.description}</p>
+                      <ul className="card-features">
+                        {calc.features.map((feature, idx) => (
+                          <li key={idx}>
+                            <span className="feature-check">✓</span> {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="card-action">
+                        <span className="card-link">
+                          Try Calculator
+                          <span className="arrow">→</span>
+                        </span>
+                      </div>
+                      <div className="card-tags">
+                        {calc.tags.map((tag, idx) => (
+                          <span 
+                            key={idx} 
+                            className={`tag ${calc.featured ? 'featured' : ''} ${calc.popular ? 'popular' : ''}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pro-tip">
+                <div className="pro-tip-header">
+                  <span className="tip-icon">💡</span>
+                  <span className="pro-tip-title">Pro Tip</span>
+                </div>
+                <div className="pro-tip-content">
+                  {key === 'debt' && 'Focus on paying off high-interest debt first (debt avalanche) to save the most money, or use the debt snowball method if you need psychological wins to stay motivated. Both methods work - choose the one you\'ll stick with!'}
+                  {key === 'budget' && 'Start with zero-based budgeting for maximum control. Always build your emergency fund before aggressive debt payoff or investing!'}
+                  {key === 'investment' && 'Start investing early, even with small amounts. A 25-year-old investing $200/month will have more at retirement than a 35-year-old investing $400/month - that\'s the power of compound interest and time!'}
+                  {key === 'realestate' && 'Follow the 28/36 rule: spend no more than 28% of gross income on housing and 36% on total debt payments. Remember, being "house poor" can derail your other financial goals!'}
+                  {key === 'travel' && 'Save for major purchases and vacations in advance. This prevents debt accumulation and often allows you to take advantage of cash discounts or better deals!'}
+                  {key === 'insurance' && 'Buy term life insurance and invest the difference. Whole life insurance is a poor investment - separate your insurance needs from your investment strategy for better results!'}
+                  {key === 'utilities' && 'Use these handy tools to complement your main financial planning. The days calculator is especially useful for tracking savings goals and debt payoff timelines!'}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features" id="features">
+        <div className="features-container">
+          <div className="section-header">
+            <h2 className="section-title">Why Choose Money Plan Lab?</h2>
+            <p className="section-subtitle">Built with proven financial principles and designed for real results</p>
+          </div>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>📱</span>
+              </div>
+              <h3 className="feature-title">Mobile Responsive</h3>
+              <p className="feature-description">Works perfectly on all devices - mobile, tablet, and desktop for calculating on the go</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>🔒</span>
+              </div>
+              <h3 className="feature-title">Privacy First</h3>
+              <p className="feature-description">All calculations happen in your browser - your financial data never leaves your device</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>⚡</span>
+              </div>
+              <h3 className="feature-title">Instant Results</h3>
+              <p className="feature-description">Get immediate calculations and see real-time updates as you adjust your numbers</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>🏆</span>
+              </div>
+              <h3 className="feature-title">Proven Formulas</h3>
+              <p className="feature-description">Built on mathematically sound financial principles used by professionals worldwide</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>📊</span>
+              </div>
+              <h3 className="feature-title">Visual Analytics</h3>
+              <p className="feature-description">Interactive charts and graphs help you visualize your financial progress and goals</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <span>❤️</span>
+              </div>
+              <h3 className="feature-title">Completely Free</h3>
+              <p className="feature-description">No hidden fees, no sign-ups required - access all calculators immediately and forever</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Selected Calculator Display */}
+      {activeCalculator && (
+        <section className="calculator-display" id="calculator-display">
+          <div className="calculator-display-container">
+            {renderCalculator()}
+          </div>
+        </section>
+      )}
+
+      {/* Footer */}
+      <footer className="footer" id="contact">
+        <div className="footer-container">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <span className="footer-logo-icon">🧮</span>
+                Money Plan Lab
+              </div>
+              <p className="footer-description">
+                Take charge of your money, career and life goals with powerful financial planning tools based on proven mathematical principles. Start your journey to financial freedom today.
+              </p>
+              <div className="social-links">
+                <a href="#" className="social-link" aria-label="Facebook">
+                  <span>📘</span>
+                </a>
+                <a href="#" className="social-link" aria-label="Twitter">
+                  <span>🐦</span>
+                </a>
+                <a href="#" className="social-link" aria-label="LinkedIn">
+                  <span>💼</span>
+                </a>
+                <a href="#" className="social-link" aria-label="YouTube">
+                  <span>📺</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h3>Debt Calculators</h3>
+              <ul className="footer-links">
+                <li><a href="debt-payoff.html" target="_blank">General Debt Payoff</a></li>
+                <li><a href="credit-card-debt.html" target="_blank">Credit Card Debt</a></li>
+                <li><a href="student-loan.html" target="_blank">Student Loan Payoff</a></li>
+                <li><a href="car-loan.html" target="_blank">Car Loan</a></li>
+                <li><a href="medical_debt_calculator.html" target="_blank">Medical Debt</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h3>Investment & Planning</h3>
+              <ul className="footer-links">
+                <li><a href="budget_calculator.html" target="_blank">Budget Calculator</a></li>
+                <li><a href="emergency-fund.html" target="_blank">Emergency Fund</a></li>
+                <li><a href="investment.html" target="_blank">Investment Calculator</a></li>
+                <li><a href="retirement.html" target="_blank">Retirement Planning</a></li>
+                <li><a href="401k-calculator.html" target="_blank">401k Calculator</a></li>
+                <li><a href="net-worth.html" target="_blank">Net Worth Calculator</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h3>Real Estate & Tools</h3>
+              <ul className="footer-links">
+                <li><a href="mortgage.html" target="_blank">Mortgage Calculator</a></li>
+                <li><a href="house-affordability.html" target="_blank">House Affordability</a></li>
+                <li><a href="life-insurance.html" target="_blank">Life Insurance</a></li>
+                <li><a href="vacation-savings.html" target="_blank">Vacation Savings</a></li>
+                <li><a href="days-between-dates.html" target="_blank">Days Between Dates</a></li>
+                <li><a href="tax-calculator.html" target="_blank">Tax Calculator</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; 2025 Money Plan Lab. All rights reserved. | Part of <a href="https://moneyplanlab.com/" target="_blank" style={{color: 'var(--primary)'}}>MoneyPlanLab.com</a> - Your complete financial education resource</p>
+          </div>
+        </div>
+      </footer>
+
       <style jsx>{`
+        :root {
+          --primary: #2563eb;
+          --primary-dark: #1d4ed8;
+          --secondary: #10b981;
+          --accent: #f59e0b;
+          --accent-dark: #d97706;
+          --danger: #dc2626;
+          --danger-dark: #b91c1c;
+          --success: #059669;
+          --gray-50: #f9fafb;
+          --gray-100: #f3f4f6;
+          --gray-200: #e5e7eb;
+          --gray-300: #d1d5db;
+          --gray-400: #9ca3af;
+          --gray-500: #6b7280;
+          --gray-600: #4b5563;
+          --gray-700: #374151;
+          --gray-800: #1f2937;
+          --gray-900: #111827;
+          --white: #ffffff;
+        }
+
         * {
           margin: 0;
           padding: 0;
@@ -418,195 +1178,296 @@ const FinancialCalculatorApp = () => {
 
         .app {
           min-height: 100vh;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          position: relative;
+          color: var(--gray-800);
+          background: var(--white);
           overflow-x: hidden;
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 9999;
-        }
-
-        .loading-content {
-          text-align: center;
-          color: white;
-        }
-
-        .loading-logo {
-          position: relative;
-          width: 80px;
-          height: 80px;
-          margin: 0 auto 24px;
-        }
-
-        .logo-ring {
-          position: absolute;
-          width: 80px;
-          height: 80px;
-          border: 3px solid rgba(255, 255, 255, 0.3);
-          border-top: 3px solid white;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        .logo-center {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 2rem;
-        }
-
-        .loading-bar {
-          width: 200px;
-          height: 4px;
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 2px;
-          margin: 24px auto;
-          overflow: hidden;
-        }
-
-        .loading-progress {
-          width: 0;
-          height: 100%;
-          background: white;
-          border-radius: 2px;
-          animation: loading 2s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        @keyframes loading {
-          0% { width: 0; }
-          50% { width: 70%; }
-          100% { width: 100%; }
         }
 
         /* Header */
         .header {
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-          padding: 1.5rem 2rem;
-          position: relative;
-        }
-
-        .header::before {
-          content: '';
-          position: absolute;
+          position: sticky;
           top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid var(--gray-200);
+          z-index: 1000;
+          transition: all 0.3s ease;
         }
 
-        .header-content {
+        .nav-container {
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 20px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          position: relative;
-          z-index: 2;
+          height: 70px;
         }
 
         .logo {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          color: white;
+          gap: 12px;
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: var(--primary);
+          text-decoration: none;
         }
 
         .logo-icon {
-          font-size: 2.5rem;
-          animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-10px); }
-          60% { transform: translateY(-5px); }
-        }
-
-        .logo h1 {
-          font-size: 1.8rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+          font-size: 2rem;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
-        .tagline {
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 0.9rem;
+        .nav-menu {
+          display: flex;
+          list-style: none;
+          gap: 32px;
+        }
+
+        .nav-item a {
+          color: var(--gray-700);
+          text-decoration: none;
           font-weight: 500;
+          transition: color 0.3s ease;
+          position: relative;
         }
 
-        /* Hero Stats */
-        .hero-stats {
-          padding: 3rem 2rem;
+        .nav-item a:hover {
+          color: var(--primary);
+        }
+
+        .nav-item a::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -5px;
+          left: 0;
+          background: var(--primary);
+          transition: width 0.3s ease;
+        }
+
+        .nav-item a:hover::after {
+          width: 100%;
+        }
+
+        .mobile-toggle {
+          display: none;
+          flex-direction: column;
+          cursor: pointer;
+          gap: 4px;
+        }
+
+        .mobile-toggle span {
+          width: 25px;
+          height: 3px;
+          background: var(--gray-700);
+          transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          padding: 120px 20px 80px;
           text-align: center;
-        }
-
-        .stats-container {
-          max-width: 1000px;
-          margin: 0 auto;
           color: white;
+          position: relative;
+          overflow: hidden;
         }
 
-        .hero-title {
-          font-size: 3rem;
+        .floating-elements {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 1;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+          content: '';
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+          top: 20%;
+          left: 10%;
+          animation-delay: 0s;
+        }
+
+        .floating-elements::after {
+          top: 60%;
+          right: 10%;
+          animation-delay: 3s;
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+          max-width: 800px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 2;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.5rem, 5vw, 4rem);
           font-weight: 800;
-          margin-bottom: 1rem;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: fadeInUp 1s ease 0.2s both;
+          margin-bottom: 24px;
+          line-height: 1.1;
         }
 
-        .hero-subtitle {
-          font-size: 1.2rem;
-          opacity: 0.9;
-          margin-bottom: 3rem;
+        .hero p {
+          font-size: 1.25rem;
+          margin-bottom: 40px;
+          opacity: 0.95;
           max-width: 600px;
           margin-left: auto;
           margin-right: auto;
-          animation: fadeInUp 1s ease 0.4s both;
         }
 
-        .stats-row {
+        .cta-buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+          padding: 16px 32px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          border: none;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .btn-primary {
+          background: var(--white);
+          color: var(--primary);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+          left: 100%;
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.2);
+          color: white;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: translateY(-3px);
+        }
+
+        /* Trusted By Section */
+        .trusted-by {
+          padding: 60px 20px;
+          background: var(--white);
+          border-bottom: 1px solid var(--gray-200);
+        }
+
+        .trusted-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        .trusted-text {
+          color: var(--gray-600);
+          font-size: 0.9rem;
+          font-weight: 500;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-bottom: 30px;
+        }
+
+        .trust-indicators {
           display: flex;
           justify-content: center;
-          gap: 3rem;
+          align-items: center;
+          gap: 40px;
           flex-wrap: wrap;
-          animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .trust-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--gray-600);
+          font-size: 0.9rem;
+        }
+
+        .trust-icon {
+          color: var(--success);
+          font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats {
+          padding: 80px 20px;
+          background: var(--gray-50);
+        }
+
+        .stats-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 40px;
+          text-align: center;
         }
 
         .stat-item {
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: white;
+          padding: 40px 30px;
           border-radius: 20px;
-          padding: 2rem 2.5rem;
-          text-align: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
+          border: 1px solid var(--gray-200);
           position: relative;
           overflow: hidden;
         }
@@ -615,210 +1476,529 @@ const FinancialCalculatorApp = () => {
           content: '';
           position: absolute;
           top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transition: left 0.6s ease;
-        }
-
-        .stat-item:hover::before {
-          left: 100%;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .stat-item:hover {
-          transform: translateY(-10px) scale(1.05);
-          background: rgba(255, 255, 255, 0.2);
+          transform: translateY(-8px);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 20px;
+        }
+
+        .stat-icon-emoji {
+          font-size: 1.5rem;
+          color: white;
         }
 
         .stat-number {
           font-size: 2.5rem;
           font-weight: 800;
+          color: var(--primary);
           display: block;
-          margin-bottom: 0.5rem;
+          margin-bottom: 8px;
         }
 
         .stat-label {
-          font-size: 0.9rem;
-          opacity: 0.9;
+          color: var(--gray-600);
           font-weight: 500;
+          font-size: 1rem;
         }
 
-        /* Main Content */
-        .main-content {
-          max-width: 1200px;
+        .stat-description {
+          color: var(--gray-500);
+          font-size: 0.9rem;
+          margin-top: 8px;
+        }
+
+        /* Calculator Categories */
+        .calculators {
+          padding: 100px 20px;
+          background: var(--white);
+        }
+
+        .calculators-container {
+          max-width: 1400px;
           margin: 0 auto;
-          padding: 2rem;
-          display: grid;
-          grid-template-columns: 300px 1fr;
-          gap: 2rem;
         }
 
-        /* Sidebar */
-        .sidebar {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 24px;
-          padding: 2rem;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          height: fit-content;
-          position: sticky;
-          top: 2rem;
-        }
-
-        .sidebar h2 {
-          font-size: 1.2rem;
-          font-weight: 700;
-          color: #374151;
-          margin-bottom: 1.5rem;
+        .section-header {
           text-align: center;
+          margin-bottom: 80px;
         }
 
-        .category-btn {
-          width: 100%;
-          background: none;
-          border: none;
-          padding: 1rem;
-          margin-bottom: 0.75rem;
-          border-radius: 16px;
-          cursor: pointer;
-          transition: all 0.3s ease;
+        .section-title {
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 800;
+          color: var(--gray-900);
+          margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+          font-size: 1.25rem;
+          color: var(--gray-600);
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .category-section {
+          margin-bottom: 80px;
+        }
+
+        .category-header {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          text-align: left;
+          gap: 20px;
+          margin-bottom: 40px;
+          padding: 30px;
+          color: white;
+          border-radius: 20px;
+          box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
           position: relative;
           overflow: hidden;
-        }
-
-        .category-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-          transition: left 0.6s ease;
-        }
-
-        .category-btn:hover::before {
-          left: 100%;
-        }
-
-        .category-btn:hover {
-          background: #f8fafc;
-          transform: translateX(5px);
-        }
-
-        .category-btn.active {
-          background: linear-gradient(135deg, #667eea, #764ba2);
-          color: white;
-          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-          transform: translateX(0);
         }
 
         .category-icon {
-          font-size: 1.5rem;
-          width: 40px;
-          text-align: center;
+          font-size: 3rem;
+          opacity: 0.9;
+          min-width: 60px;
         }
 
-        .category-name {
-          font-weight: 600;
-          font-size: 0.95rem;
+        .category-info {
+          flex: 1;
         }
 
-        .calculator-list {
-          margin-left: 2.5rem;
-          margin-top: 0.75rem;
-          margin-bottom: 1rem;
+        .category-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 8px;
         }
 
-        .calculator-btn {
-          width: 100%;
-          background: none;
-          border: none;
-          padding: 0.75rem 1rem;
-          margin-bottom: 0.5rem;
-          border-radius: 12px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          text-align: left;
-          position: relative;
+        .category-description {
+          font-size: 1.1rem;
+          opacity: 0.9;
+          line-height: 1.5;
         }
 
-        .calculator-btn:hover {
-          background: #e5e7eb;
-          transform: translateX(5px);
+        .calculator-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+          gap: 30px;
         }
 
-        .calculator-btn.active {
-          background: rgba(102, 126, 234, 0.1);
-          color: #667eea;
-          font-weight: 600;
-        }
-
-        .calc-name {
-          font-size: 0.9rem;
-          margin-bottom: 0.25rem;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .calc-desc {
-          font-size: 0.75rem;
-          color: #6b7280;
-        }
-
-        .calc-badge {
-          background: #ef4444;
-          color: white;
-          padding: 2px 8px;
-          border-radius: 12px;
-          font-size: 0.7rem;
-          font-weight: 600;
-        }
-
-        .calc-badge.popular {
-          background: #10b981;
-        }
-
-        .calc-badge.featured {
-          background: #f59e0b;
-        }
-
-        /* Content Area */
-        .content-area {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 24px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+        .calculator-card {
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
           overflow: hidden;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          border: 1px solid var(--gray-200);
           position: relative;
         }
 
-        .content-area::before {
+        .calculator-card::before {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           height: 4px;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          transition: all 0.3s ease;
+        }
+
+        .calculator-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .calculator-card:hover::before {
+          height: 6px;
+        }
+
+        .card-content {
+          padding: 35px;
+        }
+
+        .card-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 20px;
+          margin-bottom: 24px;
+        }
+
+        .card-icon {
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          font-size: 1.5rem;
+          color: white;
+        }
+
+        .card-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--gray-900);
+          margin-bottom: 8px;
+          line-height: 1.3;
+        }
+
+        .card-subtitle {
+          color: var(--primary);
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .card-description {
+          color: var(--gray-600);
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+
+        .card-features {
+          list-style: none;
+          margin-bottom: 24px;
+        }
+
+        .card-features li {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+          color: var(--gray-600);
+          font-size: 0.9rem;
+        }
+
+        .feature-check {
+          color: var(--success);
+          font-weight: bold;
+          font-size: 0.8rem;
+        }
+
+        .card-action {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 20px;
+        }
+
+        .try-calculator-btn {
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          color: white !important;
+          border: none;
+          padding: 14px 28px;
+          border-radius: 12px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+          position: relative;
+          overflow: hidden;
+          width: 100%;
+          min-height: 48px;
+          margin-top: 16px;
+          text-decoration: none;
+          z-index: 10;
+        }
+
+        .try-calculator-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s ease;
+        }
+
+        .try-calculator-btn:hover::before {
+          left: 100%;
+        }
+
+        .try-calculator-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .try-calculator-btn:hover .arrow {
+          transform: translateX(5px);
+        }
+
+        .try-calculator-btn:active {
+          transform: translateY(-1px);
+        }
+
+        .btn-text {
+          font-weight: 600;
+          color: white;
+        }
+
+        .arrow {
+          transition: transform 0.3s ease;
+          font-size: 1.2rem;
+          color: white;
+          font-weight: bold;
+        }
+
+        .card-link {
+          color: var(--primary);
+          font-weight: 600;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .card-link:hover {
+          gap: 12px;
+        }
+
+        .arrow {
+          transition: transform 0.3s ease;
+        }
+
+        .card-link:hover .arrow {
+          transform: translateX(4px);
+        }
+
+        .card-tags {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-top: 16px;
+        }
+
+        .tag {
+          background: var(--gray-100);
+          color: var(--gray-600);
+          padding: 6px 12px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .tag.featured {
+          background: var(--primary);
+          color: white;
+        }
+
+        .tag.popular {
+          background: var(--accent);
+          color: white;
+        }
+
+        /* Category-specific colors */
+        .debt-category .calculator-card::before {
+          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+        }
+
+        .debt-category .card-icon {
+          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+        }
+
+        .budget-category .calculator-card::before {
+          background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        .budget-category .card-icon {
+          background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        .realestate-category .calculator-card::before {
+          background: linear-gradient(135deg, var(--success), var(--secondary));
+        }
+
+        .realestate-category .card-icon {
+          background: linear-gradient(135deg, var(--success), var(--secondary));
+        }
+
+        .travel-category .calculator-card::before {
+          background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .travel-category .card-icon {
+          background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .insurance-category .calculator-card::before {
+          background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .insurance-category .card-icon {
+          background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .utilities-category .calculator-card::before {
+          background: linear-gradient(135deg, #06b6d4, #0891b2);
+        }
+
+        .utilities-category .card-icon {
+          background: linear-gradient(135deg, #06b6d4, #0891b2);
+        }
+
+        /* Pro Tip Section */
+        .pro-tip {
+          background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+          border-left: 4px solid var(--accent);
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+        }
+
+        .pro-tip-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+
+        .tip-icon {
+          color: var(--accent);
+          font-size: 1.2rem;
+        }
+
+        .pro-tip-title {
+          font-weight: 600;
+          color: var(--gray-800);
+        }
+
+        .pro-tip-content {
+          color: var(--gray-600);
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+
+        /* Features Section */
+        .features {
+          padding: 100px 20px;
+          background: var(--gray-50);
+        }
+
+        .features-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 40px;
+        }
+
+        .feature-card {
+          background: white;
+          padding: 45px 35px;
+          border-radius: 20px;
+          text-align: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+          border: 1px solid var(--gray-200);
+          position: relative;
+        }
+
+        .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          border-radius: 20px 20px 0 0;
+        }
+
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+          width: 80px;
+          height: 80px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 24px;
+          position: relative;
+          font-size: 2rem;
+          color: white;
+        }
+
+        .feature-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--gray-900);
+          margin-bottom: 16px;
+        }
+
+        .feature-description {
+          color: var(--gray-600);
+          line-height: 1.6;
+        }
+
+        /* Calculator Display */
+        .calculator-display {
+          padding: 60px 20px;
+          background: var(--gray-50);
+        }
+
+        .calculator-display-container {
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
         /* Calculator Container */
         .calculator-container {
-          padding: 3rem;
+          background: white;
+          border-radius: 24px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          border: 1px solid var(--gray-200);
+          overflow: hidden;
+          position: relative;
+        }
+
+        .calculator-container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         .calculator-header {
           text-align: center;
-          margin-bottom: 3rem;
+          padding: 3rem 3rem 2rem;
         }
 
         .calculator-icon {
@@ -827,24 +2007,15 @@ const FinancialCalculatorApp = () => {
           animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-
         .calculator-header h2 {
           font-size: 2.2rem;
           font-weight: 800;
-          color: #374151;
+          color: var(--gray-900);
           margin-bottom: 0.75rem;
-          background: linear-gradient(135deg, #374151, #6b7280);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
         }
 
         .calculator-header p {
-          color: #6b7280;
+          color: var(--gray-600);
           font-size: 1.1rem;
         }
 
@@ -852,6 +2023,7 @@ const FinancialCalculatorApp = () => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 3rem;
+          padding: 0 3rem 3rem;
         }
 
         /* Input Section */
@@ -868,7 +2040,7 @@ const FinancialCalculatorApp = () => {
         .input-group label {
           display: block;
           font-weight: 600;
-          color: #374151;
+          color: var(--gray-700);
           margin-bottom: 0.75rem;
           font-size: 0.95rem;
         }
@@ -882,7 +2054,7 @@ const FinancialCalculatorApp = () => {
         .input-prefix,
         .input-suffix {
           position: absolute;
-          color: #6b7280;
+          color: var(--gray-500);
           font-weight: 600;
           z-index: 2;
         }
@@ -899,25 +2071,25 @@ const FinancialCalculatorApp = () => {
           width: 100%;
           padding: 1rem 1.25rem;
           padding-left: 2.5rem;
-          border: 2px solid #e5e7eb;
+          border: 2px solid var(--gray-200);
           border-radius: 16px;
           font-size: 1.1rem;
           font-weight: 500;
           transition: all 0.3s ease;
           background: white;
-          color: #374151;
+          color: var(--gray-700);
         }
 
         .input-group input:focus {
           outline: none;
-          border-color: #667eea;
-          box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+          border-color: var(--primary);
+          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
           transform: translateY(-2px);
         }
 
         /* Calculate Button */
         .calculate-btn {
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
           color: white;
           border: none;
           padding: 1.25rem 2rem;
@@ -926,7 +2098,7 @@ const FinancialCalculatorApp = () => {
           font-weight: 700;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -952,7 +2124,7 @@ const FinancialCalculatorApp = () => {
 
         .calculate-btn:hover {
           transform: translateY(-4px);
-          box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
+          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.5);
         }
 
         .calculate-btn:active {
@@ -978,6 +2150,11 @@ const FinancialCalculatorApp = () => {
           animation: spin 1s linear infinite;
         }
 
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
         /* Result Section */
         .result-section {
           display: flex;
@@ -988,7 +2165,7 @@ const FinancialCalculatorApp = () => {
         .result-section h3 {
           font-size: 1.5rem;
           font-weight: 700;
-          color: #374151;
+          color: var(--gray-700);
           text-align: center;
           margin-bottom: 1rem;
         }
@@ -1000,8 +2177,8 @@ const FinancialCalculatorApp = () => {
         }
 
         .result-card {
-          background: #f8fafc;
-          border: 2px solid #e2e8f0;
+          background: var(--gray-50);
+          border: 2px solid var(--gray-200);
           border-radius: 16px;
           padding: 1.5rem;
           display: flex;
@@ -1012,52 +2189,37 @@ const FinancialCalculatorApp = () => {
           overflow: hidden;
         }
 
-        .result-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
-          transition: left 0.6s ease;
-        }
-
-        .result-card:hover::before {
-          left: 100%;
-        }
-
         .result-card:hover {
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .result-card.primary {
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-          border-color: #667eea;
+          background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
+          border-color: var(--primary);
         }
 
         .result-card.danger {
-          background: rgba(239, 68, 68, 0.1);
-          border-color: #ef4444;
+          background: rgba(220, 38, 38, 0.1);
+          border-color: var(--danger);
         }
 
         .result-icon {
           font-size: 2rem;
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
-          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
 
         .result-card.danger .result-icon {
-          background: linear-gradient(135deg, #ef4444, #dc2626);
-          box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+          box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
         }
 
         .result-info {
@@ -1066,7 +2228,7 @@ const FinancialCalculatorApp = () => {
 
         .result-label {
           font-weight: 600;
-          color: #6b7280;
+          color: var(--gray-500);
           font-size: 0.9rem;
           margin-bottom: 0.25rem;
         }
@@ -1074,15 +2236,15 @@ const FinancialCalculatorApp = () => {
         .result-value {
           font-size: 1.8rem;
           font-weight: 800;
-          color: #374151;
+          color: var(--gray-700);
         }
 
         .result-card.primary .result-value {
-          color: #667eea;
+          color: var(--primary);
         }
 
         .result-card.danger .result-value {
-          color: #ef4444;
+          color: var(--danger);
         }
 
         /* Budget Breakdown */
@@ -1106,16 +2268,20 @@ const FinancialCalculatorApp = () => {
           box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        .budget-category.needs {
-          border-left-color: #3b82f6;
+        .budget-category.income {
+          border-left-color: #059669;
         }
 
-        .budget-category.wants {
-          border-left-color: #8b5cf6;
+        .budget-category.expenses {
+          border-left-color: #f59e0b;
         }
 
-        .budget-category.savings {
+        .budget-category.surplus {
           border-left-color: #10b981;
+        }
+
+        .budget-category.deficit {
+          border-left-color: #dc2626;
         }
 
         .budget-header {
@@ -1136,16 +2302,20 @@ const FinancialCalculatorApp = () => {
           color: white;
         }
 
-        .budget-category.needs .budget-icon {
-          background: linear-gradient(135deg, #3b82f6, #2563eb);
+        .budget-category.income .budget-icon {
+          background: linear-gradient(135deg, #059669, #047857);
         }
 
-        .budget-category.wants .budget-icon {
-          background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        .budget-category.expenses .budget-icon {
+          background: linear-gradient(135deg, #f59e0b, #d97706);
         }
 
-        .budget-category.savings .budget-icon {
+        .budget-category.surplus .budget-icon {
           background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .budget-category.deficit .budget-icon {
+          background: linear-gradient(135deg, #dc2626, #b91c1c);
         }
 
         .budget-info h4 {
@@ -1156,7 +2326,7 @@ const FinancialCalculatorApp = () => {
 
         .budget-info p {
           font-size: 0.9rem;
-          color: #6b7280;
+          color: var(--gray-600);
         }
 
         .budget-amount {
@@ -1165,16 +2335,20 @@ const FinancialCalculatorApp = () => {
           text-align: right;
         }
 
-        .budget-category.needs .budget-amount {
-          color: #3b82f6;
+        .budget-category.income .budget-amount {
+          color: #059669;
         }
 
-        .budget-category.wants .budget-amount {
-          color: #8b5cf6;
+        .budget-category.expenses .budget-amount {
+          color: #f59e0b;
         }
 
-        .budget-category.savings .budget-amount {
+        .budget-category.surplus .budget-amount {
           color: #10b981;
+        }
+
+        .budget-category.deficit .budget-amount {
+          color: #dc2626;
         }
 
         /* Coming Soon */
@@ -1239,12 +2413,12 @@ const FinancialCalculatorApp = () => {
         .coming-soon h2 {
           font-size: 2rem;
           font-weight: 800;
-          color: #374151;
+          color: var(--gray-700);
           margin-bottom: 1rem;
         }
 
         .coming-soon p {
-          color: #6b7280;
+          color: var(--gray-600);
           font-size: 1.1rem;
           margin-bottom: 2rem;
         }
@@ -1252,7 +2426,7 @@ const FinancialCalculatorApp = () => {
         .progress-bar {
           width: 200px;
           height: 8px;
-          background: #e5e7eb;
+          background: var(--gray-200);
           border-radius: 4px;
           margin: 0 auto;
           overflow: hidden;
@@ -1261,7 +2435,7 @@ const FinancialCalculatorApp = () => {
         .progress-fill {
           width: 0;
           height: 100%;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, var(--primary), var(--secondary));
           border-radius: 4px;
           animation: progress 3s ease-in-out infinite;
         }
@@ -1272,24 +2446,188 @@ const FinancialCalculatorApp = () => {
           100% { width: 0; }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        /* Footer */
+        .footer {
+          background: var(--gray-900);
+          color: var(--gray-300);
+          padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 60px;
+          margin-bottom: 40px;
+        }
+
+        .footer-brand {
+          color: white;
+        }
+
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin-bottom: 16px;
+        }
+
+        .footer-logo-icon {
+          color: var(--primary);
+          font-size: 2rem;
+        }
+
+        .footer-description {
+          line-height: 1.6;
+          margin-bottom: 24px;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 16px;
+        }
+
+        .social-link {
+          width: 40px;
+          height: 40px;
+          background: var(--gray-800);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--gray-400);
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+          background: var(--primary);
+          color: white;
+          transform: translateY(-2px);
+        }
+
+        .footer-section h3 {
+          color: white;
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+
+        .footer-links {
+          list-style: none;
+        }
+
+        .footer-links li {
+          margin-bottom: 12px;
+        }
+
+        .footer-links a {
+          color: var(--gray-400);
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+          color: var(--primary);
+        }
+
+        .footer-bottom {
+          border-top: 1px solid var(--gray-800);
+          padding-top: 30px;
+          text-align: center;
+          color: var(--gray-500);
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+          .calculator-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          }
+        }
+
         @media (max-width: 768px) {
-          .main-content {
+          .nav-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: white;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            transition: left 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .nav-menu.active {
+            left: 0;
+          }
+
+          .mobile-toggle {
+            display: flex;
+          }
+
+          .hero {
+            padding: 80px 20px 60px;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .btn-primary, .btn-secondary {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+          }
+
+          .stats {
+            padding: 60px 20px;
+          }
+
+          .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          }
+
+          .calculators {
+            padding: 80px 20px;
+          }
+
+          .calculator-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding: 1rem;
+          }
+
+          .category-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 16px;
+            padding: 25px;
+          }
+
+          .category-icon {
+            font-size: 2.5rem;
+          }
+
+          .category-title {
+            font-size: 1.6rem;
+          }
+
+          .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+          }
+
+          .trust-indicators {
+            gap: 20px;
           }
 
           .calculator-content {
@@ -1297,102 +2635,20 @@ const FinancialCalculatorApp = () => {
             gap: 2rem;
           }
 
-          .stats-row {
-            gap: 1.5rem;
+          .calculator-header {
+            padding: 2rem 2rem 1rem;
           }
 
-          .stat-item {
-            padding: 1.5rem 2rem;
+          .calculator-content {
+            padding: 0 2rem 2rem;
           }
 
-          .hero-title {
-            font-size: 2.2rem;
-          }
-
-          .calculator-container {
-            padding: 2rem;
-          }
-
-          .calculator-header h2 {
-            font-size: 1.8rem;
-          }
-
-          .sidebar {
-            position: static;
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
           }
         }
       `}</style>
-
-      {/* Header */}
-      <header className="header">
-        <div className="header-content">
-          <div className="logo">
-            <div className="logo-icon">🧮</div>
-            <h1>Calculator Hub</h1>
-          </div>
-          <p className="tagline">Professional planning tools for everyone</p>
-        </div>
-      </header>
-
-      {/* Hero Stats Section */}
-      <section className="hero-stats">
-        <div className="stats-container">
-          <h1 className="hero-title">Professional Calculator Suite</h1>
-          <p className="hero-subtitle">
-            Free, powerful calculators based on proven mathematical principles. 
-            Build wealth, eliminate debt, and achieve your money goals faster.
-          </p>
-          
-          <div className="stats-row">
-            <Counter target={20} label="Calculator Tools" suffix="+" />
-            <Counter target={1000} label="Users Helped" />
-            <Counter target={100} label="% Free Forever" suffix="%" />
-          </div>
-        </div>
-      </section>
-
-      <div className="main-content">
-        {/* Sidebar Navigation */}
-        <div className="sidebar">
-          <h2>Calculator Categories</h2>
-          
-          {Object.entries(categories).map(([key, category]) => (
-            <div key={key}>
-              <button
-                onClick={() => setActiveCategory(key)}
-                className={`category-btn ${activeCategory === key ? 'active' : ''}`}
-              >
-                <span className="category-icon">{category.icon}</span>
-                <span className="category-name">{category.name}</span>
-              </button>
-              
-              {activeCategory === key && (
-                <div className="calculator-list">
-                  {category.calculators.map((calc) => (
-                    <button
-                      key={calc.id}
-                      onClick={() => setActiveCalculator(calc.id)}
-                      className={`calculator-btn ${activeCalculator === calc.id ? 'active' : ''}`}
-                    >
-                      <div className="calc-name">
-                        {calc.name}
-                        {calc.popular && <span className="calc-badge popular">Popular</span>}
-                        {calc.featured && <span className="calc-badge featured">Featured</span>}
-                      </div>
-                      <div className="calc-desc">{calc.desc}</div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Main Content */}
-        <div className="content-area">
-          {renderCalculator()}
-        </div>
-      </div>
     </div>
   );
 };
