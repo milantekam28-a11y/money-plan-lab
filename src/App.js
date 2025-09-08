@@ -369,327 +369,6 @@ const FinancialCalculatorApp = () => {
     }
   };
 
-  const EMICalculator = () => {
-    const [principal, setPrincipal] = useState('100000');
-    const [rate, setRate] = useState('10');
-    const [tenure, setTenure] = useState('12');
-    const [result, setResult] = useState(null);
-    const [calculating, setCalculating] = useState(false);
-
-    const calculateEMI = () => {
-      setCalculating(true);
-      
-      setTimeout(() => {
-        const P = parseFloat(principal);
-        const r = parseFloat(rate) / 100 / 12;
-        const n = parseFloat(tenure);
-        
-        if (P && r && n) {
-          const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-          const totalPayment = emi * n;
-          const totalInterest = totalPayment - P;
-          
-          setResult({
-            emi: emi.toFixed(2),
-            totalPayment: totalPayment.toFixed(2),
-            totalInterest: totalInterest.toFixed(2)
-          });
-        }
-        setCalculating(false);
-      }, 1000);
-    };
-
-    return (
-      <div className="calculator-container">
-        <div className="calculator-header">
-          <div className="calculator-icon">💵</div>
-          <h2>EMI Calculator</h2>
-          <p>Calculate your monthly loan payments with precision</p>
-        </div>
-        
-        <div className="calculator-content">
-          <div className="input-section">
-            <div className="input-group">
-              <label>Loan Amount ($)</label>
-              <div className="input-wrapper">
-                <span className="input-prefix">$</span>
-                <input
-                  type="number"
-                  value={principal}
-                  onChange={(e) => setPrincipal(e.target.value)}
-                  placeholder="100,000"
-                />
-              </div>
-            </div>
-            
-            <div className="input-group">
-              <label>Annual Interest Rate</label>
-              <div className="input-wrapper">
-                <input
-                  type="number"
-                  value={rate}
-                  onChange={(e) => setRate(e.target.value)}
-                  placeholder="10"
-                  step="0.1"
-                />
-                <span className="input-suffix">%</span>
-              </div>
-            </div>
-            
-            <div className="input-group">
-              <label>Loan Tenure</label>
-              <div className="input-wrapper">
-                <input
-                  type="number"
-                  value={tenure}
-                  onChange={(e) => setTenure(e.target.value)}
-                  placeholder="12"
-                />
-                <span className="input-suffix">months</span>
-              </div>
-            </div>
-            
-            <button 
-              onClick={calculateEMI} 
-              className="calculate-btn"
-              disabled={calculating}
-            >
-              {calculating ? (
-                <>
-                  <div className="spinner"></div>
-                  Calculating...
-                </>
-              ) : (
-                <>
-                  <span className="btn-icon">🧮</span>
-                  Calculate EMI
-                </>
-              )}
-            </button>
-          </div>
-          
-          {result && (
-            <div className="result-section">
-              <h3>💡 Results</h3>
-              <div className="result-cards">
-                <div className="result-card primary">
-                  <div className="result-icon">💰</div>
-                  <div className="result-info">
-                    <div className="result-label">Monthly EMI</div>
-                    <div className="result-value">${result.emi}</div>
-                  </div>
-                </div>
-                
-                <div className="result-card">
-                  <div className="result-icon">📊</div>
-                  <div className="result-info">
-                    <div className="result-label">Total Payment</div>
-                    <div className="result-value">${result.totalPayment}</div>
-                  </div>
-                </div>
-                
-                <div className="result-card danger">
-                  <div className="result-icon">⚠️</div>
-                  <div className="result-info">
-                    <div className="result-label">Total Interest</div>
-                    <div className="result-value">${result.totalInterest}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const BudgetCalculator = () => {
-    const [income, setIncome] = useState('5000');
-    const [needs, setNeeds] = useState('');
-    const [wants, setWants] = useState('');
-    const [debts, setDebts] = useState('');
-    const [result, setResult] = useState(null);
-    const [calculating, setCalculating] = useState(false);
-
-    const calculateBudget = () => {
-      setCalculating(true);
-      
-      setTimeout(() => {
-        const monthlyIncome = parseFloat(income);
-        const needsAmount = parseFloat(needs) || 0;
-        const wantsAmount = parseFloat(wants) || 0;
-        const debtsAmount = parseFloat(debts) || 0;
-        
-        if (monthlyIncome) {
-          const totalExpenses = needsAmount + wantsAmount + debtsAmount;
-          const leftover = monthlyIncome - totalExpenses;
-          
-          setResult({
-            totalIncome: monthlyIncome.toFixed(2),
-            totalExpenses: totalExpenses.toFixed(2),
-            leftover: leftover.toFixed(2),
-            needsPercent: ((needsAmount / monthlyIncome) * 100).toFixed(1),
-            wantsPercent: ((wantsAmount / monthlyIncome) * 100).toFixed(1),
-            debtsPercent: ((debtsAmount / monthlyIncome) * 100).toFixed(1)
-          });
-        }
-        setCalculating(false);
-      }, 1000);
-    };
-
-    return (
-      <div className="calculator-container">
-        <div className="calculator-header">
-          <div className="calculator-icon">📊</div>
-          <h2>Budget Calculator</h2>
-          <p>Create your zero-based budget using proven budgeting principles</p>
-        </div>
-        
-        <div className="calculator-content">
-          <div className="input-section">
-            <div className="input-group">
-              <label>Monthly After-Tax Income</label>
-              <div className="input-wrapper">
-                <span className="input-prefix">$</span>
-                <input
-                  type="number"
-                  value={income}
-                  onChange={(e) => setIncome(e.target.value)}
-                  placeholder="5,000"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label>Needs (Housing, Food, Utilities)</label>
-              <div className="input-wrapper">
-                <span className="input-prefix">$</span>
-                <input
-                  type="number"
-                  value={needs}
-                  onChange={(e) => setNeeds(e.target.value)}
-                  placeholder="2,500"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label>Wants (Entertainment, Dining Out)</label>
-              <div className="input-wrapper">
-                <span className="input-prefix">$</span>
-                <input
-                  type="number"
-                  value={wants}
-                  onChange={(e) => setWants(e.target.value)}
-                  placeholder="1,500"
-                />
-              </div>
-            </div>
-
-            <div className="input-group">
-              <label>Debt Payments</label>
-              <div className="input-wrapper">
-                <span className="input-prefix">$</span>
-                <input
-                  type="number"
-                  value={debts}
-                  onChange={(e) => setDebts(e.target.value)}
-                  placeholder="500"
-                />
-              </div>
-            </div>
-            
-            <button 
-              onClick={calculateBudget} 
-              className="calculate-btn"
-              disabled={calculating}
-            >
-              {calculating ? (
-                <>
-                  <div className="spinner"></div>
-                  Calculating...
-                </>
-              ) : (
-                <>
-                  <span className="btn-icon">🧮</span>
-                  Calculate Budget
-                </>
-              )}
-            </button>
-          </div>
-          
-          {result && (
-            <div className="result-section">
-              <h3>🎯 Your Budget Analysis</h3>
-              
-              <div className="budget-breakdown">
-                <div className="budget-category income">
-                  <div className="budget-header">
-                    <div className="budget-icon">💰</div>
-                    <div className="budget-info">
-                      <h4>Monthly Income</h4>
-                      <p>Your total after-tax income</p>
-                    </div>
-                  </div>
-                  <div className="budget-amount">${result.totalIncome}</div>
-                </div>
-                
-                <div className="budget-category expenses">
-                  <div className="budget-header">
-                    <div className="budget-icon">📝</div>
-                    <div className="budget-info">
-                      <h4>Total Expenses</h4>
-                      <p>Needs + Wants + Debt payments</p>
-                    </div>
-                  </div>
-                  <div className="budget-amount">${result.totalExpenses}</div>
-                </div>
-                
-                <div className={`budget-category ${parseFloat(result.leftover) >= 0 ? 'surplus' : 'deficit'}`}>
-                  <div className="budget-header">
-                    <div className="budget-icon">{parseFloat(result.leftover) >= 0 ? '✅' : '⚠️'}</div>
-                    <div className="budget-info">
-                      <h4>{parseFloat(result.leftover) >= 0 ? 'Surplus' : 'Deficit'}</h4>
-                      <p>{parseFloat(result.leftover) >= 0 ? 'Money left for savings' : 'You\'re overspending'}</p>
-                    </div>
-                  </div>
-                  <div className="budget-amount">${result.leftover}</div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const renderCalculator = () => {
-    switch(activeCalculator) {
-      case 'emi':
-        return <EMICalculator />;
-      case 'budget':
-        return <BudgetCalculator />;
-      default:
-        return (
-          <div className="coming-soon">
-            <div className="coming-soon-animation">
-              <div className="rocket">🚀</div>
-              <div className="stars">
-                <div className="star">⭐</div>
-                <div className="star">✨</div>
-                <div className="star">💫</div>
-              </div>
-            </div>
-            <h2>Calculator Coming Soon</h2>
-            <p>This calculator is being developed with advanced features. Check back soon!</p>
-            <div className="progress-bar">
-              <div className="progress-fill"></div>
-            </div>
-          </div>
-        );
-    }
-  };
-
   const Counter = ({ target, label, suffix = '' }) => {
     const [count, setCount] = useState(0);
 
@@ -753,78 +432,6 @@ const FinancialCalculatorApp = () => {
             <div className="loading-progress"></div>
           </div>
         </div>
-        <style jsx>{`
-          .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-          }
-
-          .loading-content {
-            text-align: center;
-            color: white;
-          }
-
-          .loading-logo {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-          }
-
-          .logo-ring {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-          }
-
-          .logo-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-          }
-
-          .loading-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            margin: 24px auto;
-            overflow: hidden;
-          }
-
-          .loading-progress {
-            width: 0;
-            height: 100%;
-            background: white;
-            border-radius: 2px;
-            animation: loading 1.5s ease-in-out infinite;
-          }
-
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-
-          @keyframes loading {
-            0% { width: 0; }
-            50% { width: 70%; }
-            100% { width: 100%; }
-          }
-        `}</style>
       </div>
     );
   }
@@ -941,11 +548,6 @@ const FinancialCalculatorApp = () => {
                     onClick={() => {
                       if (calc.url) {
                         window.open(calc.url, '_blank');
-                      } else if (calc.id === 'emi') {
-                        setActiveCalculator(calc.id);
-                        document.getElementById('calculator-display')?.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        setActiveCalculator(calc.id);
                       }
                     }}
                   >
@@ -1067,15 +669,6 @@ const FinancialCalculatorApp = () => {
           </div>
         </div>
       </section>
-
-      {/* Selected Calculator Display */}
-      {activeCalculator && (
-        <section className="calculator-display" id="calculator-display">
-          <div className="calculator-display-container">
-            {renderCalculator()}
-          </div>
-        </section>
-      )}
 
       {/* Footer */}
       <footer className="footer" id="contact">
@@ -1268,6 +861,78 @@ const FinancialCalculatorApp = () => {
           height: 3px;
           background: var(--gray-700);
           transition: all 0.3s ease;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+        }
+
+        .loading-content {
+          text-align: center;
+          color: white;
+        }
+
+        .loading-logo {
+          position: relative;
+          width: 80px;
+          height: 80px;
+          margin: 0 auto 24px;
+        }
+
+        .logo-ring {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          border: 3px solid rgba(255, 255, 255, 0.3);
+          border-top: 3px solid white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+
+        .logo-center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 2rem;
+        }
+
+        .loading-bar {
+          width: 200px;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+          margin: 24px auto;
+          overflow: hidden;
+        }
+
+        .loading-progress {
+          width: 0;
+          height: 100%;
+          background: white;
+          border-radius: 2px;
+          animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        @keyframes loading {
+          0% { width: 0; }
+          50% { width: 70%; }
+          100% { width: 100%; }
         }
 
         /* Hero Section */
@@ -1702,70 +1367,6 @@ const FinancialCalculatorApp = () => {
           margin-top: 20px;
         }
 
-        .try-calculator-btn {
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          color: white !important;
-          border: none;
-          padding: 14px 28px;
-          border-radius: 12px;
-          font-size: 1rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex !important;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-          min-height: 48px;
-          margin-top: 16px;
-          text-decoration: none;
-          z-index: 10;
-        }
-
-        .try-calculator-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transition: left 0.5s ease;
-        }
-
-        .try-calculator-btn:hover::before {
-          left: 100%;
-        }
-
-        .try-calculator-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5);
-        }
-
-        .try-calculator-btn:hover .arrow {
-          transform: translateX(5px);
-        }
-
-        .try-calculator-btn:active {
-          transform: translateY(-1px);
-        }
-
-        .btn-text {
-          font-weight: 600;
-          color: white;
-        }
-
-        .arrow {
-          transition: transform 0.3s ease;
-          font-size: 1.2rem;
-          color: white;
-          font-weight: bold;
-        }
-
         .card-link {
           color: var(--primary);
           font-weight: 600;
@@ -1965,487 +1566,6 @@ const FinancialCalculatorApp = () => {
           line-height: 1.6;
         }
 
-        /* Calculator Display */
-        .calculator-display {
-          padding: 60px 20px;
-          background: var(--gray-50);
-        }
-
-        .calculator-display-container {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        /* Calculator Container */
-        .calculator-container {
-          background: white;
-          border-radius: 24px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          border: 1px solid var(--gray-200);
-          overflow: hidden;
-          position: relative;
-        }
-
-        .calculator-container::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-        }
-
-        .calculator-header {
-          text-align: center;
-          padding: 3rem 3rem 2rem;
-        }
-
-        .calculator-icon {
-          font-size: 4rem;
-          margin-bottom: 1rem;
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .calculator-header h2 {
-          font-size: 2.2rem;
-          font-weight: 800;
-          color: var(--gray-900);
-          margin-bottom: 0.75rem;
-        }
-
-        .calculator-header p {
-          color: var(--gray-600);
-          font-size: 1.1rem;
-        }
-
-        .calculator-content {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          padding: 0 3rem 3rem;
-        }
-
-        /* Input Section */
-        .input-section {
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-        }
-
-        .input-group {
-          position: relative;
-        }
-
-        .input-group label {
-          display: block;
-          font-weight: 600;
-          color: var(--gray-700);
-          margin-bottom: 0.75rem;
-          font-size: 0.95rem;
-        }
-
-        .input-wrapper {
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        .input-prefix,
-        .input-suffix {
-          position: absolute;
-          color: var(--gray-500);
-          font-weight: 600;
-          z-index: 2;
-        }
-
-        .input-prefix {
-          left: 1rem;
-        }
-
-        .input-suffix {
-          right: 1rem;
-        }
-
-        .input-group input {
-          width: 100%;
-          padding: 1rem 1.25rem;
-          padding-left: 2.5rem;
-          border: 2px solid var(--gray-200);
-          border-radius: 16px;
-          font-size: 1.1rem;
-          font-weight: 500;
-          transition: all 0.3s ease;
-          background: white;
-          color: var(--gray-700);
-        }
-
-        .input-group input:focus {
-          outline: none;
-          border-color: var(--primary);
-          box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-          transform: translateY(-2px);
-        }
-
-        /* Calculate Button */
-        .calculate-btn {
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          color: white;
-          border: none;
-          padding: 1.25rem 2rem;
-          border-radius: 16px;
-          font-size: 1.1rem;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.75rem;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .calculate-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transition: left 0.7s ease;
-        }
-
-        .calculate-btn:hover::before {
-          left: 100%;
-        }
-
-        .calculate-btn:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.5);
-        }
-
-        .calculate-btn:active {
-          transform: translateY(-2px);
-        }
-
-        .calculate-btn:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-          transform: none;
-        }
-
-        .btn-icon {
-          font-size: 1.2rem;
-        }
-
-        .spinner {
-          width: 20px;
-          height: 20px;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          border-top: 2px solid white;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        /* Result Section */
-        .result-section {
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-        }
-
-        .result-section h3 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: var(--gray-700);
-          text-align: center;
-          margin-bottom: 1rem;
-        }
-
-        .result-cards {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .result-card {
-          background: var(--gray-50);
-          border: 2px solid var(--gray-200);
-          border-radius: 16px;
-          padding: 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .result-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .result-card.primary {
-          background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
-          border-color: var(--primary);
-        }
-
-        .result-card.danger {
-          background: rgba(220, 38, 38, 0.1);
-          border-color: var(--danger);
-        }
-
-        .result-icon {
-          font-size: 2rem;
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .result-card.danger .result-icon {
-          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
-          box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
-        }
-
-        .result-info {
-          flex: 1;
-        }
-
-        .result-label {
-          font-weight: 600;
-          color: var(--gray-500);
-          font-size: 0.9rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .result-value {
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: var(--gray-700);
-        }
-
-        .result-card.primary .result-value {
-          color: var(--primary);
-        }
-
-        .result-card.danger .result-value {
-          color: var(--danger);
-        }
-
-        /* Budget Breakdown */
-        .budget-breakdown {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .budget-category {
-          background: white;
-          border-radius: 16px;
-          padding: 1.5rem;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-          border-left: 4px solid;
-          transition: all 0.3s ease;
-        }
-
-        .budget-category:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .budget-category.income {
-          border-left-color: #059669;
-        }
-
-        .budget-category.expenses {
-          border-left-color: #f59e0b;
-        }
-
-        .budget-category.surplus {
-          border-left-color: #10b981;
-        }
-
-        .budget-category.deficit {
-          border-left-color: #dc2626;
-        }
-
-        .budget-header {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .budget-icon {
-          font-size: 2rem;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-        }
-
-        .budget-category.income .budget-icon {
-          background: linear-gradient(135deg, #059669, #047857);
-        }
-
-        .budget-category.expenses .budget-icon {
-          background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .budget-category.surplus .budget-icon {
-          background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .budget-category.deficit .budget-icon {
-          background: linear-gradient(135deg, #dc2626, #b91c1c);
-        }
-
-        .budget-info h4 {
-          font-size: 1.2rem;
-          font-weight: 700;
-          margin-bottom: 0.25rem;
-        }
-
-        .budget-info p {
-          font-size: 0.9rem;
-          color: var(--gray-600);
-        }
-
-        .budget-amount {
-          font-size: 2rem;
-          font-weight: 800;
-          text-align: right;
-        }
-
-        .budget-category.income .budget-amount {
-          color: #059669;
-        }
-
-        .budget-category.expenses .budget-amount {
-          color: #f59e0b;
-        }
-
-        .budget-category.surplus .budget-amount {
-          color: #10b981;
-        }
-
-        .budget-category.deficit .budget-amount {
-          color: #dc2626;
-        }
-
-        /* Coming Soon */
-        .coming-soon {
-          text-align: center;
-          padding: 5rem 2rem;
-          position: relative;
-        }
-
-        .coming-soon-animation {
-          position: relative;
-          margin-bottom: 2rem;
-        }
-
-        .rocket {
-          font-size: 4rem;
-          animation: rocketFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes rocketFloat {
-          0%, 100% { transform: translateY(0px) rotate(-5deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        .stars {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 200px;
-          height: 100px;
-        }
-
-        .star {
-          position: absolute;
-          animation: twinkle 2s ease-in-out infinite;
-        }
-
-        .star:nth-child(1) {
-          top: 20%;
-          left: 20%;
-          animation-delay: 0s;
-        }
-
-        .star:nth-child(2) {
-          top: 40%;
-          right: 20%;
-          animation-delay: 0.7s;
-        }
-
-        .star:nth-child(3) {
-          bottom: 20%;
-          left: 50%;
-          animation-delay: 1.4s;
-        }
-
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .coming-soon h2 {
-          font-size: 2rem;
-          font-weight: 800;
-          color: var(--gray-700);
-          margin-bottom: 1rem;
-        }
-
-        .coming-soon p {
-          color: var(--gray-600);
-          font-size: 1.1rem;
-          margin-bottom: 2rem;
-        }
-
-        .progress-bar {
-          width: 200px;
-          height: 8px;
-          background: var(--gray-200);
-          border-radius: 4px;
-          margin: 0 auto;
-          overflow: hidden;
-        }
-
-        .progress-fill {
-          width: 0;
-          height: 100%;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          border-radius: 4px;
-          animation: progress 3s ease-in-out infinite;
-        }
-
-        @keyframes progress {
-          0% { width: 0; }
-          50% { width: 75%; }
-          100% { width: 0; }
-        }
-
         /* Footer */
         .footer {
           background: var(--gray-900);
@@ -2628,19 +1748,6 @@ const FinancialCalculatorApp = () => {
 
           .trust-indicators {
             gap: 20px;
-          }
-
-          .calculator-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
-          .calculator-header {
-            padding: 2rem 2rem 1rem;
-          }
-
-          .calculator-content {
-            padding: 0 2rem 2rem;
           }
 
           .footer-grid {
