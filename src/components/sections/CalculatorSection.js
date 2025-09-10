@@ -1,8 +1,11 @@
 // src/components/sections/CalculatorSection.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { categories } from '../../data/categories';
 
 const CalculatorSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="calculators" id="calculators">
       <div className="calculators-container">
@@ -28,7 +31,7 @@ const CalculatorSection = () => {
                   className="calculator-card"
                   onClick={() => {
                     if (calc.url) {
-                      window.open(calc.url, '_blank');
+                      navigate(calc.url);
                     }
                   }}
                 >
