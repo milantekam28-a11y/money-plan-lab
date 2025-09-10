@@ -10,7 +10,7 @@ export const categories = {
     calculators: [
       {
         id: 'emi-calculator',
-        title: 'EMI Calculator',
+        title: 'Universal EMI Calculator',
         subtitle: 'Loan Payment Calculator',
         description: 'Calculate monthly EMI payments for any loan with principal, interest rate, and tenure.',
         icon: '💰',
