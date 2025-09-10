@@ -1,11 +1,12 @@
-// data/categories.js - Fixed complete file
-
+// src/data/categories.js
 export const categories = {
   debt: {
     name: 'Get Out of Debt',
     icon: '🔗💥',
     description: 'Break free from the cycle of debt and reclaim your financial freedom with proven debt elimination strategies',
     color: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+    categoryUrl: '/debt-calculators',
+    seoKeywords: 'debt payoff calculator, debt snowball, debt avalanche, credit card payoff, loan calculator',
     calculators: [
       {
         id: 'emi-calculator',
@@ -19,25 +20,25 @@ export const categories = {
         url: '/debt-calculators/emi-calculator'
       },
       {
-        id: 'debt-payoff',
-        title: 'General Debt Payoff',
+        id: 'universal-debt-payoff',
+        title: 'Universal Debt Payoff Calculator',
         subtitle: 'Ultimate Debt Destroyer',
-        description: 'Calculate the fastest way to pay off all your debts using avalanche or snowball methods with detailed payment schedules.',
+        description: 'Calculate the fastest way to pay off all your debts using avalanche or snowball methods.',
         icon: '🔥',
-        features: ['Multiple debt strategies', 'Interest savings calculator', 'Payment schedule timeline'],
+        features: ['Multiple debt strategies', 'Global currency support', 'Interest savings calculator'],
         tags: ['Most Popular', 'Debt Avalanche', 'Debt Snowball'],
         featured: true,
-        url: 'https://undebt.it/'
+        url: '/debt-calculators/universal-debt-payoff'
       },
       {
         id: 'credit-card',
-        title: 'Credit Card Debt',
+        title: 'Credit Cards Payoff Calculator',
         subtitle: 'High-Interest Killer',
         description: 'Calculate minimum payments vs. aggressive payoff strategies for credit cards with compound interest analysis.',
         icon: '💳',
         features: ['APR impact analysis', 'Balance transfer options', 'Payment optimization'],
         tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
-        url: 'https://www.creditkarma.com/calculators/credit-card-payoff'
+        url: '/debt-calculators/Credit-Cards-Payoff-Calculator'
       },
       {
         id: 'student-loan',

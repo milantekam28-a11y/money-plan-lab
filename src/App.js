@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer';
 // Pages - Import only what exists
 import HomePage from './pages/HomePage';
 import EMICalculator from './pages/calculators/debt/EMICalculator';
+import UniversalDebtPayoff from './pages/calculators/debt/UniversalDebtPayoff';
 
 // Styles
 import './styles/globals.css';
@@ -38,6 +39,9 @@ const App = () => {
           {/* EMI Calculator */}
           <Route path="/debt-calculators/emi-calculator" element={<EMICalculator />} />
           
+          {/* Universal Debt Payoff */}
+          <Route path="/debt-calculators/universal-debt-payoff" element={<UniversalDebtPayoff />} />
+
           {/* Temporary - other routes will be added later */}
           <Route path="*" element={
             <div style={{padding: '100px 20px', textAlign: 'center'}}>
