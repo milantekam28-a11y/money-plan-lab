@@ -11,6 +11,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import EMICalculator from './pages/calculators/debt/EMICalculator';
 import UniversalDebtPayoff from './pages/calculators/debt/UniversalDebtPayoff';
+import CreditCardDebtCalculator from './pages/calculators/debt/CreditCardDebtCalculator';
 
 // Styles
 import './styles/globals.css';
@@ -41,6 +42,9 @@ const App = () => {
           
           {/* Universal Debt Payoff */}
           <Route path="/debt-calculators/universal-debt-payoff" element={<UniversalDebtPayoff />} />
+
+          {/* Credit Card Debt Calculator */}
+          <Route path="/debt-calculators/Credit-Card-Debt-Calculator" element={<CreditCardDebtCalculator />} />
 
           {/* Temporary - other routes will be added later */}
           <Route path="*" element={

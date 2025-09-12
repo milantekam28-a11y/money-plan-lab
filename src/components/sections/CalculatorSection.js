@@ -30,10 +30,12 @@ const CalculatorSection = () => {
                   key={calc.id} 
                   className="calculator-card"
                   onClick={() => {
-                    if (calc.url) {
-                      navigate(calc.url);
-                    }
-                  }}
+  if (calc.url.startsWith('/')) {
+    navigate(calc.url);  // Internal routes
+  } else if (calc.url.startsWith('http')) {
+    window.open(calc.url, '_blank');  // External URLs
+  }
+}}
                 >
                   <div className="card-content">
                     <div className="card-header">

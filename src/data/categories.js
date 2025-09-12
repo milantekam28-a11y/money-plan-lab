@@ -31,14 +31,14 @@ export const categories = {
         url: '/debt-calculators/universal-debt-payoff'
       },
       {
-        id: 'credit-card',
+        id: 'Credit-Card-Debt-Calculator',
         title: 'Credit Cards Payoff Calculator',
         subtitle: 'High-Interest Killer',
         description: 'Calculate minimum payments vs. aggressive payoff strategies for credit cards with compound interest analysis.',
         icon: '💳',
         features: ['APR impact analysis', 'Balance transfer options', 'Payment optimization'],
         tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
-        url: '/debt-calculators/Credit-Cards-Payoff-Calculator'
+        url: '/debt-calculators/Credit-Card-Debt-Calculator'
       },
       {
         id: 'student-loan',
