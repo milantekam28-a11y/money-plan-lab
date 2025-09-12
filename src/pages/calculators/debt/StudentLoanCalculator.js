@@ -1,11 +1,7 @@
-// src/pages/calculators/debt/StudentLoanCalculator.js
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { Calculator, DollarSign, Percent, Clock, Globe, Home, ChevronRight, GraduationCap, BookOpen, Zap } from 'lucide-react';
 
 const StudentLoanCalculator = () => {
-  const navigate = useNavigate();
-  
   // States
   const [loanBalance, setLoanBalance] = useState('35000');
   const [interestRate, setInterestRate] = useState('5.5');
@@ -124,8 +120,8 @@ const StudentLoanCalculator = () => {
     calculatePayoff();
   }, [loanBalance, interestRate, loanTerm, minimumPayment, extraPayment, currency]);
 
-  // Navigation functions
-  const goHome = () => navigate('/');
+  // Navigation function
+  const goHome = () => window.location.href = '/';
 
   return (
     <div className="student-loan-calculator">
@@ -138,46 +134,14 @@ const StudentLoanCalculator = () => {
               Home
             </button>
             <ChevronRight size={14} className="separator" />
-            <Link to="/#debt" className="breadcrumb-link">
+            <a href="/debt-calculators" className="breadcrumb-link">
               Debt Calculators
-            </Link>
+            </a>
             <ChevronRight size={14} className="separator" />
             <span className="breadcrumb-current">Student Loan Calculator</span>
           </div>
         </div>
       </nav>
-
-      {/* Back to Home Button */}
-      <div className="container" style={{ textAlign: 'center', padding: '20px 0' }}>
-        <Link 
-          to="/" 
-          className="back-home-btn"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
-            color: 'white',
-            padding: '12px 24px',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            fontWeight: '600',
-            transition: 'all 0.2s ease',
-            boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 6px 20px rgba(37, 99, 235, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.3)';
-          }}
-        >
-          <Home size={16} />
-          Back to All Calculators
-        </Link>
-      </div>
 
       {/* Hero Section */}
       <section className="hero">

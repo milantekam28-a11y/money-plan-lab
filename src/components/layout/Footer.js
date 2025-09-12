@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Debt Calculators</h3>
             <ul className="footer-links">
-              <li><a href="debt-payoff.html" target="_blank">General Debt Payoff</a></li>
+              <li><a href="/debt-calculators" target="_blank">General Debt Payoff</a></li>
               <li><a href="credit-card-debt.html" target="_blank">Credit Card Debt</a></li>
               <li><a href="student-loan.html" target="_blank">Student Loan Payoff</a></li>
               <li><a href="car-loan.html" target="_blank">Car Loan</a></li>

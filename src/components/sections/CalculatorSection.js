@@ -29,13 +29,17 @@ const CalculatorSection = () => {
                 <div 
                   key={calc.id} 
                   className="calculator-card"
-                  onClick={() => {
-  if (calc.url.startsWith('/')) {
-    navigate(calc.url);  // Internal routes
-  } else if (calc.url.startsWith('http')) {
-    window.open(calc.url, '_blank');  // External URLs
-  }
-}}
+                  // NEW (CORRECT):
+                onClick={() => {
+                  // Navigate to category page first, not individual calculators
+                  if (category.categoryUrl) {
+                    navigate(category.categoryUrl);  // Goes to /debt-calculators
+                  } else if (calc.url.startsWith('/')) {
+                    navigate(calc.url);  // Fallback to individual calculator
+                  } else if (calc.url.startsWith('http')) {
+                    window.open(calc.url, '_blank');  // External URLs
+                  }
+                }}
                 >
                   <div className="card-content">
                     <div className="card-header">
@@ -57,7 +61,7 @@ const CalculatorSection = () => {
                     </ul>
                     <div className="card-action">
                       <span className="card-link">
-                        Try Calculator
+                        Explore Calculators
                         <span className="arrow">→</span>
                       </span>
                     </div>

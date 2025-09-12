@@ -301,3 +301,152 @@ a {
   .lg\:flex { display: flex; }
   .lg\:grid { display: grid; }
 }
+/* Add these classes to the end of your src/styles/globals.css file */
+
+/* Responsive Grid Classes for Card Layout */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Responsive breakpoints */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Background colors */
+.bg-gray-50 { background-color: var(--gray-50); }
+.bg-gray-100 { background-color: var(--gray-100); }
+.bg-gray-200 { background-color: var(--gray-200); }
+.bg-gray-300 { background-color: var(--gray-300); }
+.bg-white { background-color: var(--white); }
+
+.bg-red-50 { background-color: #fef2f2; }
+.bg-red-100 { background-color: #fee2e2; }
+.bg-red-600 { background-color: var(--danger); }
+.bg-red-700 { background-color: var(--danger-dark); }
+
+.bg-blue-100 { background-color: #dbeafe; }
+.bg-blue-600 { background-color: var(--primary); }
+
+.bg-yellow-50 { background-color: #fffbeb; }
+.bg-yellow-100 { background-color: #fef3c7; }
+
+.bg-green-100 { background-color: #dcfce7; }
+.bg-green-500 { background-color: #22c55e; }
+
+.bg-purple-100 { background-color: #f3e8ff; }
+
+/* Text colors */
+.text-white { color: var(--white); }
+.text-red-100 { color: #fee2e2; }
+.text-red-600 { color: var(--danger); }
+.text-blue-600 { color: var(--primary); }
+.text-blue-800 { color: #1e40af; }
+.text-gray-500 { color: var(--gray-500); }
+.text-gray-600 { color: var(--gray-600); }
+.text-gray-700 { color: var(--gray-700); }
+.text-gray-900 { color: var(--gray-900); }
+.text-yellow-600 { color: #d97706; }
+.text-green-800 { color: #166534; }
+.text-purple-800 { color: #7c3aed; }
+
+/* Border utilities */
+.border { border-width: 1px; }
+.border-t-4 { border-top-width: 4px; }
+.border-gray-100 { border-color: var(--gray-100); }
+.border-gray-300 { border-color: var(--gray-300); }
+.border-red-500 { border-color: var(--danger); }
+.border-yellow-200 { border-color: #fef08a; }
+
+/* Spacing utilities */
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.leading-relaxed { line-height: 1.625; }
+
+/* Hover effects */
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover\:bg-red-700:hover {
+  background-color: var(--danger-dark);
+}
+
+/* Transitions */
+.transition-all { transition-property: all; }
+.transition-colors { transition-property: color, background-color, border-color; }
+.transition-shadow { transition-property: box-shadow; }
+.duration-200 { transition-duration: 200ms; }
+.duration-300 { transition-duration: 300ms; }
+
+/* Flex utilities */
+.flex-shrink-0 { flex-shrink: 0; }
+
+/* Sizing */
+.w-4 { width: 1rem; }
+.w-12 { width: 3rem; }
+.h-4 { height: 1rem; }
+.h-12 { height: 3rem; }
+.max-w-4xl { max-width: 56rem; }
+.max-w-7xl { max-width: 80rem; }
+
+/* Display */
+.overflow-hidden { overflow: hidden; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* Opacity */
+.opacity-75 { opacity: 0.75; }
+
+/* Position and padding/margin */
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mr-2 { margin-right: 0.5rem; }
+.mr-3 { margin-right: 0.75rem; }
+.mr-4 { margin-right: 1rem; }
+
+/* Responsive padding */
+.sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+/* Force stats to single line - Override everything */
+.hero-stats-override {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  gap: 15px !important;
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+.hero-stats-override .stat-item {
+  flex: 1 !important;
+  min-width: 120px !important;
+  max-width: 160px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  padding: 14px 18px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  text-align: center !important;
+}
