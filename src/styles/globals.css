@@ -301,7 +301,6 @@ a {
   .lg\:flex { display: flex; }
   .lg\:grid { display: grid; }
 }
-/* Add these classes to the end of your src/styles/globals.css file */
 
 /* Responsive Grid Classes for Card Layout */
 .grid-cols-1 {
@@ -429,6 +428,7 @@ a {
 /* Responsive padding */
 .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
 .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+
 /* Force stats to single line - Override everything */
 .hero-stats-override {
   display: flex !important;
@@ -449,4 +449,101 @@ a {
   border-radius: 14px !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   text-align: center !important;
+}
+
+/* =============================================================================
+   BREADCRUMB STYLES - Fixed Navigation with Arrows
+   ============================================================================= */
+.breadcrumbs {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+}
+
+.breadcrumbs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.breadcrumb-list {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb-link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.breadcrumb-current {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 6px;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect on separator when hovering previous link */
+.breadcrumb-link:hover + .breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateX(2px);
+}
+
+/* Mobile responsive breadcrumbs */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 12px 0;
+  }
+  
+  .breadcrumb-link,
+  .breadcrumb-current {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+  
+  .breadcrumb-separator {
+    font-size: 14px;
+    margin: 0 4px;
+  }
 }

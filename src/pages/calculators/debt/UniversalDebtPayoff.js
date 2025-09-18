@@ -1539,7 +1539,7 @@ const UniversalDebtPayoff = () => {
         .faq-answer::before {
           content: 'A';
           position: absolute;
-          left: 28px;
+          left: 30px;
           top: 24px;
           width: 24px;
           height: 24px;
@@ -1554,8 +1554,8 @@ const UniversalDebtPayoff = () => {
         }
 
         .faq-answer p {
-          margin-left: 36px;
           margin: 0;
+          margin-left: 36px;
         }
 
         /* Mobile Responsiveness */

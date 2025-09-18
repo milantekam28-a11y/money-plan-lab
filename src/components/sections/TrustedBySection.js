@@ -13,7 +13,7 @@ const TrustedBySection = () => {
           </div>
           <div className="trust-item">
             <span className="trust-icon">👥</span>
-            <span>500K+ Users</span>
+            <span>2K+ Users</span>
           </div>
           <div className="trust-item">
             <span className="trust-icon">⭐</span>

@@ -1,64 +1,92 @@
 // src/data/categories.js
 export const categories = {
   debt: {
-    name: 'Get Out of Debt',
+    name: 'Debt Calculators',
     icon: '🔗💥',
     description: 'Break free from the cycle of debt and reclaim your financial freedom with proven debt elimination strategies',
     color: 'linear-gradient(135deg, #dc2626, #b91c1c)',
-    categoryUrl: '/debt-calculators',
+    categoryUrl: '/category/debt-calculators',
     seoKeywords: 'debt payoff calculator, debt snowball, debt avalanche, credit card payoff, loan calculator',
     calculators: [
       {
         id: 'emi-calculator',
-        title: 'Universal EMI Calculator',
+        title: 'EMI Calculator',
         subtitle: 'Loan Payment Calculator',
         description: 'Calculate monthly EMI payments for any loan with principal, interest rate, and tenure.',
         icon: '💰',
         features: ['Monthly EMI calculation', 'Total interest payable', 'Payment breakdown'],
         tags: ['Most Popular', 'Loan Calculator', 'Monthly Payment'],
         featured: true,
-        url: '/debt-calculators/emi-calculator'
+        // Breadcrumb: Home > EMI Calculator (Direct, no category)
+        url: '/category/debt-calculators/emi-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'EMI Calculator', url: '/category/debt-calculators/emi-calculator' }
+        ]
       },
       {
         id: 'universal-debt-payoff',
-        title: 'Universal Debt Payoff Calculator',
+        title: 'Debt Payoff Calculator',
         subtitle: 'Ultimate Debt Destroyer',
         description: 'Calculate the fastest way to pay off all your debts using avalanche or snowball methods.',
         icon: '🔥',
         features: ['Multiple debt strategies', 'Global currency support', 'Interest savings calculator'],
         tags: ['Most Popular', 'Debt Avalanche', 'Debt Snowball'],
         featured: true,
-        url: '/debt-calculators/universal-debt-payoff'
+        // Breadcrumb: Home > Debt Payoff Calculator
+        url: '/category/debt-calculators/debt-payoff-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Debt Payoff Calculator', url: '/category/debt-calculators/debt-payoff-calculator' }
+        ]
       },
       {
         id: 'Credit-Card-Debt-Calculator',
-        title: 'Credit Cards Payoff Calculator',
+        title: 'Credit Card Payoff Calculator',
         subtitle: 'High-Interest Killer',
         description: 'Calculate minimum payments vs. aggressive payoff strategies for credit cards with compound interest analysis.',
         icon: '💳',
         features: ['APR impact analysis', 'Balance transfer options', 'Payment optimization'],
         tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
-        url: '/debt-calculators/Credit-Card-Debt-Calculator'
+        // Breadcrumb: Home > Credit Card Payoff Calculator
+        url: '/category/debt-calculators/credit-card-payoff-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Credit Card Payoff Calculator', url: '/category/debt-calculators/credit-card-payoff-calculator' }
+        ]
       },
       {
         id: 'student-loan',
-        title: 'Student Loan Payoff',
+        title: 'Student Loan Payoff Calculator',
         subtitle: 'Education Debt Freedom',
         description: 'Accelerate your student loan freedom with extra payment strategies, refinancing analysis, and forgiveness programs.',
         icon: '🎓',
         features: ['Refinancing comparison', 'Forgiveness program eligibility', 'Extra payment impact'],
         tags: ['Federal Loans', 'PSLF', 'Refinancing'],
-        url: 'https://studentloanhero.com/calculators/student-loan-payoff-calculator/'
+        // Breadcrumb: Home > Student Loan Payoff Calculator
+        url: '/category/debt-calculators/student-loan-payoff-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Student Loan Payoff Calculator', url: '/category/debt-calculators/student-loan-payoff-calculator' }
+        ]
       },
       {
         id: 'car-loan',
         title: 'Car Loan Calculator',
         subtitle: 'Auto Financing Tool',
-        description: 'Compare auto loan terms, calculate payments, and see the impact of down payments on your car financing.',
+        description: 'Compare auto loan terms, calculate payments, and see down payment impact.',
         icon: '🚗',
         features: ['Payment comparison', 'Down payment analysis', 'Trade-in value impact'],
         tags: ['Auto Loan', 'Down Payment', 'Trade-in'],
-        url: 'https://www.bankrate.com/calculators/auto/auto-loan-calculator.aspx'
+        featured: true,
+        available: true,
+        status: 'active',
+        // Breadcrumb: Home > Car Loan Calculator
+        url: '/category/debt-calculators/car-loan-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Car Loan Calculator', url: '/category/debt-calculators/car-loan-calculator' }
+        ]
       },
       {
         id: 'medical-debt',
@@ -68,15 +96,22 @@ export const categories = {
         icon: '🏥',
         features: ['Payment plan options', 'Negotiation strategies', 'Credit protection tips'],
         tags: ['Payment Plans', 'Negotiation', 'Credit Protection'],
-        url: 'https://www.nerdwallet.com/article/health/medical-debt-calculator'
+        status: 'active',
+        // Breadcrumb: Home > Medical Debt Calculator
+        url: '/category/debt-calculators/medical-debt-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Medical Debt Calculator', url: '/category/debt-calculators/medical-debt-calculator' }
+        ]
       }
     ]
   },
   budget: {
-    name: 'Budgeting & Planning',
+    name: 'Budget Calculators',
     icon: '📊',
     description: 'Build a solid financial foundation with smart budgeting tools and emergency planning strategies',
     color: 'linear-gradient(135deg, #f59e0b, #d97706)',
+    categoryUrl: '/category/budget-calculators',
     calculators: [
       {
         id: 'budget',
@@ -87,7 +122,12 @@ export const categories = {
         features: ['Income vs. expenses tracking', 'Category recommendations', 'Surplus/deficit analysis'],
         tags: ['Essential', 'Zero-Based', 'EveryDollar'],
         featured: true,
-        url: 'https://www.mint.com/budget-calculator'
+        // Breadcrumb: Home > Budget Calculator
+        url: '/category/budget-calculators/budget-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Budget Calculator', url: '/category/budget-calculators/budget-calculator' }
+        ]
       },
       {
         id: 'emergency-fund',
@@ -97,7 +137,12 @@ export const categories = {
         icon: '🛡️',
         features: ['3-6 months expenses', 'Job stability factors', 'Savings timeline'],
         tags: ['3-6 Months', 'Safety Net', 'Peace of Mind'],
-        url: 'https://www.nerdwallet.com/article/banking/emergency-fund-calculator'
+        // Breadcrumb: Home > Emergency Fund Calculator
+        url: '/category/budget-calculators/emergency-fund-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Emergency Fund Calculator', url: '/category/budget-calculators/emergency-fund-calculator' }
+        ]
       },
       {
         id: 'savings-goal',
@@ -107,7 +152,12 @@ export const categories = {
         icon: '🎯',
         features: ['Multiple goal tracking', 'Timeline optimization', 'Progress visualization'],
         tags: ['Goal Setting', 'Progress Tracking', 'Motivation'],
-        url: 'https://www.bankrate.com/calculators/savings/savings-goal-calculator.aspx'
+        // Breadcrumb: Home > Savings Goal Calculator
+        url: '/category/budget-calculators/savings-goal-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'Savings Goal Calculator', url: '/category/budget-calculators/savings-goal-calculator' }
+        ]
       },
       {
         id: 'college-savings',
@@ -117,15 +167,21 @@ export const categories = {
         icon: '🎓',
         features: ['529 plan optimization', 'Education inflation factor', 'State tax benefits'],
         tags: ['529 Plans', 'Education Savings', 'Tax Benefits'],
-        url: 'https://www.savingforcollege.com/calculators/college-savings-calculator'
+        // Breadcrumb: Home > College Savings Calculator
+        url: '/category/budget-calculators/college-savings-calculator',
+        breadcrumbs: [
+          { name: 'Home', url: '/' },
+          { name: 'College Savings Calculator', url: '/category/budget-calculators/college-savings-calculator' }
+        ]
       }
     ]
   },
   investment: {
-    name: 'Investment & Retirement',
+    name: 'Investment Calculators',
     icon: '📈',
     description: 'Build wealth and plan for your golden years with compound interest and smart investment strategies',
     color: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+    categoryUrl: '/category/investment-calculators',
     calculators: [
       {
         id: 'compound-interest',
@@ -136,6 +192,7 @@ export const categories = {
         features: ['Visual growth charts', 'Different compounding frequencies', 'Einstein\'s favorite formula'],
         tags: ['Einstein Quote', 'Magic of Math', 'Exponential Growth'],
         popular: true,
+        status: 'external',
         url: 'https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator'
       },
       {
@@ -146,6 +203,7 @@ export const categories = {
         icon: '🏖️',
         features: ['401k match optimization', 'Social Security planning', 'Withdrawal strategies'],
         tags: ['401k Planning', 'Nest Egg', 'Social Security'],
+        status: 'external',
         url: 'https://www.fidelity.com/calculators-tools/retirement-income-planner'
       },
       {
@@ -156,6 +214,7 @@ export const categories = {
         icon: '📊',
         features: ['Historical market returns', 'Regular contribution tracking', 'Inflation adjustment'],
         tags: ['Popular', 'Compound Interest', 'Long-term Growth'],
+        status: 'external',
         url: 'https://www.calculator.net/investment-calculator.html'
       },
       {
@@ -166,6 +225,7 @@ export const categories = {
         icon: '💼',
         features: ['Employer match calculator', 'Tax savings analysis', 'Contribution limits tracking'],
         tags: ['Employer Match', 'Tax Benefits', 'Free Money'],
+        status: 'external',
         url: 'https://www.bankrate.com/retirement/calculators/401-k-retirement-calculator/'
       },
       {
@@ -176,6 +236,7 @@ export const categories = {
         icon: '🪙',
         features: ['Tax-free withdrawals', 'Roth vs. Traditional comparison', 'Income limit calculator'],
         tags: ['Tax-Free', 'Roth IRA', 'Retirement'],
+        status: 'external',
         url: 'https://www.schwab.com/ira/roth-ira/calculator'
       },
       {
@@ -186,15 +247,17 @@ export const categories = {
         icon: '💎',
         features: ['Asset categorization', 'Liability tracking', 'Progress monitoring'],
         tags: ['Wealth Tracking', 'Assets vs Debts', 'Progress'],
+        status: 'external',
         url: 'https://www.bankrate.com/calculators/savings/net-worth-calculator.aspx'
       }
     ]
   },
   realestate: {
-    name: 'Real Estate & Housing',
+    name: 'Real Estate Calculators',
     icon: '🏠',
     description: 'Make smart decisions about your biggest investment with comprehensive property analysis tools',
     color: 'linear-gradient(135deg, #10b981, #059669)',
+    categoryUrl: '/category/real-estate-calculators',
     calculators: [
       {
         id: 'mortgage',
@@ -205,6 +268,7 @@ export const categories = {
         features: ['PITI breakdown', 'PMI calculation', 'Amortization schedule'],
         tags: ['Essential', 'PITI Calculator', 'Home Buying'],
         featured: true,
+        status: 'external',
         url: 'https://www.bankrate.com/calculators/mortgages/mortgage-calculator.aspx'
       },
       {
@@ -215,6 +279,7 @@ export const categories = {
         icon: '🎯',
         features: ['Interest savings calculation', 'Time reduction analysis', 'Payment schedule optimization'],
         tags: ['Extra Payments', 'Interest Savings', 'Own Sooner'],
+        status: 'external',
         url: 'https://www.bankrate.com/calculators/mortgages/mortgage-payoff-calculator.aspx'
       },
       {
@@ -225,6 +290,7 @@ export const categories = {
         icon: '🧮',
         features: ['28/36 rule application', 'DTI consideration', 'Down payment impact'],
         tags: ['28/36 Rule', 'Safe Buying', 'Budget Planning'],
+        status: 'external',
         url: 'https://www.zillow.com/mortgage-calculator/house-affordability-calculator/'
       },
       {
@@ -235,6 +301,7 @@ export const categories = {
         icon: '⚖️',
         features: ['Total cost comparison', 'Opportunity cost analysis', 'Break-even point'],
         tags: ['Total Cost', 'Opportunity Cost', 'Smart Decision'],
+        status: 'external',
         url: 'https://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html'
       },
       {
@@ -245,15 +312,17 @@ export const categories = {
         icon: '🔄',
         features: ['Break-even calculation', 'Closing cost analysis', 'Monthly savings potential'],
         tags: ['Break-even', 'Lower Rates', 'Monthly Savings'],
+        status: 'external',
         url: 'https://www.bankrate.com/calculators/mortgages/refinance-calculator.aspx'
       }
     ]
   },
   travel: {
-    name: 'Travel & Purchase Planning',
+    name: 'Travel Calculators',
     icon: '✈️',
     description: 'Plan major purchases and dream vacations without breaking your budget or going into debt',
     color: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+    categoryUrl: '/category/travel-calculators',
     calculators: [
       {
         id: 'vacation-savings',
@@ -263,6 +332,7 @@ export const categories = {
         icon: '🧳',
         features: ['Trip cost breakdown', 'Monthly savings plan', 'Timeline optimization'],
         tags: ['Dream Vacation', 'No Debt', 'Travel Planning'],
+        status: 'external',
         url: 'https://www.bankrate.com/calculators/savings/vacation-calculator.aspx'
       },
       {
@@ -273,6 +343,7 @@ export const categories = {
         icon: '🛒',
         features: ['Cash vs. credit analysis', 'Savings timeline', 'Opportunity cost calculation'],
         tags: ['Cash Purchase', 'No Interest', 'Smart Buying'],
+        status: 'external',
         url: 'https://www.calculator.net/savings-calculator.html'
       },
       {
@@ -283,15 +354,17 @@ export const categories = {
         icon: '💖',
         features: ['Category budget allocation', 'Guest count impact', 'Savings timeline'],
         tags: ['Wedding Planning', 'Debt-Free Start', 'Budget Breakdown'],
+        status: 'external',
         url: 'https://www.theknot.com/wedding-budget-calculator'
       }
     ]
   },
   insurance: {
-    name: 'Insurance & Protection',
+    name: 'Insurance Calculators',
     icon: '🛡️',
     description: 'Protect your family and financial future with appropriate insurance coverage planning',
     color: 'linear-gradient(135deg, #f59e0b, #d97706)',
+    categoryUrl: '/category/insurance-calculators',
     calculators: [
       {
         id: 'life-insurance',
@@ -302,6 +375,7 @@ export const categories = {
         features: ['Income replacement calculation', 'Debt coverage analysis', 'Future needs planning'],
         tags: ['Essential', 'Term Life', 'Family Protection'],
         featured: true,
+        status: 'external',
         url: 'https://www.bankrate.com/insurance/life-insurance/life-insurance-needs-calculator/'
       },
       {
@@ -312,6 +386,7 @@ export const categories = {
         icon: '♿',
         features: ['Income replacement ratio', 'Short vs. long term', 'Employer benefit analysis'],
         tags: ['Income Protection', 'Disability Coverage', 'Risk Management'],
+        status: 'external',
         url: 'https://www.calculator.net/disability-insurance-calculator.html'
       },
       {
@@ -322,15 +397,17 @@ export const categories = {
         icon: '🏥',
         features: ['Triple tax advantage', 'Retirement healthcare planning', 'Investment growth potential'],
         tags: ['Triple Tax Benefit', 'Health Savings', 'Retirement Tool'],
+        status: 'external',
         url: 'https://www.bankrate.com/retirement/hsa-calculator/'
       }
     ]
   },
   utilities: {
-    name: 'Financial Utilities & Tools',
+    name: 'Utility Calculators',
     icon: '🔧',
     description: 'Handy financial tools and calculators for everyday money management tasks',
     color: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+    categoryUrl: '/category/utilities-calculators',
     calculators: [
       {
         id: 'days-between',
@@ -341,6 +418,7 @@ export const categories = {
         features: ['Exact day calculation', 'Business days option', 'Age calculator'],
         tags: ['Date Calculator', 'Planning Tool', 'Goal Tracking'],
         popular: true,
+        status: 'external',
         url: 'https://www.timeanddate.com/date/durationresult.html'
       },
       {
@@ -351,6 +429,7 @@ export const categories = {
         icon: '📋',
         features: ['Federal tax calculation', 'State tax estimates', 'Deduction optimization'],
         tags: ['Tax Planning', 'Income Tax', 'Deductions'],
+        status: 'external',
         url: 'https://www.nerdwallet.com/taxes/tax-calculator'
       },
       {
@@ -361,6 +440,7 @@ export const categories = {
         icon: '🧾',
         features: ['Multiple tip percentages', 'Bill splitting', 'Service quality guide'],
         tags: ['Tip Calculator', 'Bill Splitting', 'Dining'],
+        status: 'external',
         url: 'https://www.calculator.net/tip-calculator.html'
       }
     ]

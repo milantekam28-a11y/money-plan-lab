@@ -12,10 +12,10 @@ const Header = () => {
           Money Plan Lab
         </a>
         <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
-          <li className="nav-item"><a href="#calculators">Calculators</a></li>
-          <li className="nav-item"><a href="#features">Features</a></li>
-          <li className="nav-item"><a href="#about">About</a></li>
-          <li className="nav-item"><a href="#contact">Contact</a></li>
+          <li className="nav-item"><a href="#calculators">Investment calculators</a></li>
+          <li className="nav-item"><a href="#features">Real Estate calculators</a></li>
+          <li className="nav-item"><a href="#about">Travel calculators</a></li>
+          <li className="nav-item"><a href="#contact">Insurance calculators </a></li>
         </ul>
         <div 
           className="mobile-toggle" 

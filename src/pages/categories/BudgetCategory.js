@@ -1,171 +1,126 @@
-// src/pages/categories/DebtCategory.js
+// src/pages/categories/BudgetCategory.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../../components/SEO/SEOHead';
 
-const DebtCategory = () => {
+const BudgetCategory = () => {
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: 'Debt Calculators', url: '/category/debt-calculators' }
+    { name: 'Budget Calculators', url: '/budget-calculators' }
   ];
 
   const calculators = [
     {
-      id: 'emi-calculator',
-      title: 'Universal EMI Calculator',
-      subtitle: 'LOAN PAYMENT CALCULATOR',
-      description: 'Calculate monthly EMI payments for any loan with principal, interest rate, and tenure.',
-      icon: '🏠',
+      id: 'budget-calculator',
+      title: 'Budget Calculator',
+      subtitle: 'ZERO-BASED BUDGETING',
+      description: 'Create your zero-based budget using Dave Ramsey\'s proven budgeting principles and EveryDollar method.',
+      icon: '📋',
       features: [
-        'Monthly EMI calculation',
-        'Total interest payable',
-        'Payment breakdown'
+        'Income vs. expenses tracking',
+        'Category recommendations',
+        'Surplus/deficit analysis'
       ],
-      tags: ['Most Popular', 'Loan Calculator', 'Monthly Payment'],
-      url: '/debt-calculators/emi-calculator',
-      isWorking: true,
-      color: '#10b981'
-    },
-    {
-      id: 'universal-debt-payoff',
-      title: 'Universal Debt Payoff Calculator',
-      subtitle: 'ULTIMATE DEBT DESTROYER',
-      description: 'Calculate the fastest way to pay off all your debts using avalanche or snowball methods.',
-      icon: '🔥',
-      features: [
-        'Multiple debt strategies',
-        'Global currency support',
-        'Interest savings calculator'
-      ],
-      tags: ['Most Popular', 'Debt Avalanche', 'Debt Snowball'],
-      url: '/debt-calculators/universal-debt-payoff',
-      isWorking: true,
-      color: '#667eea'
-    },
-    {
-      id: 'credit-cards-payoff',
-      title: 'Credit Cards Payoff Calculator',
-      subtitle: 'HIGH-INTEREST KILLER',
-      description: 'Calculate minimum payments vs. aggressive payoff strategies for credit cards.',
-      icon: '💳',
-      features: [
-        'APR impact analysis',
-        'Balance transfer options',
-        'Payment optimization'
-      ],
-      tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
-      url: '/debt-calculators/credit-card-debt',
-      isWorking: true,
-      color: '#ef4444'
-    },
-    {
-      id: 'student-loan-payoff',
-      title: 'Student Loan Payoff',
-      subtitle: 'EDUCATION DEBT FREEDOM',
-      description: 'Accelerate your student loan freedom with extra payment strategies and refinancing analysis.',
-      icon: '🎓',
-      features: [
-        'Refinancing comparison',
-        'Forgiveness programs',
-        'Extra payment impact'
-      ],
-      tags: ['Federal Loans', 'PSLF', 'Refinancing'],
-      url: '/debt-calculators/student-loan-payoff',
+      tags: ['Essential', 'Zero-Based', 'EveryDollar'],
+      url: '/budget-calculators/budget-calculator',
       isWorking: true,
       color: '#f59e0b'
     },
     {
-      id: 'car-loan-calculator',
-      title: 'Car Loan Calculator',
-      subtitle: 'AUTO FINANCING TOOL',
-      description: 'Compare auto loan terms, calculate payments, and see down payment impact.',
-      icon: '🚗',
+      id: 'emergency-fund',
+      title: 'Emergency Fund Calculator',
+      subtitle: 'FINANCIAL SAFETY NET',
+      description: 'Calculate how much you need in your emergency fund based on your monthly expenses and family situation.',
+      icon: '🛡️',
       features: [
-        'Payment comparison',
-        'Down payment analysis',
-        'Trade-in value impact'
+        '3-6 months expenses',
+        'Job stability factors',
+        'Savings timeline'
       ],
-      tags: ['Auto Loan', 'Down Payment', 'Trade-in'],
-      url: '/debt-calculators/car-loan-calculator',
+      tags: ['3-6 Months', 'Safety Net', 'Peace of Mind'],
+      url: '/budget-calculators/emergency-fund',
       isWorking: true,
       color: '#10b981'
     },
     {
-      id: 'medical-debt-calculator',
-      title: 'Medical Debt Calculator',
-      subtitle: 'HEALTHCARE BILL MANAGER',
-      description: 'Handle unexpected medical bills with smart planning and payment strategies.',
-      icon: '🏥',
+      id: 'savings-goal',
+      title: 'Savings Goal Calculator',
+      subtitle: 'GOAL ACHIEVEMENT TOOL',
+      description: 'Set and track your savings goals with detailed timelines and monthly contribution requirements.',
+      icon: '🎯',
       features: [
-        'Payment plan options',
-        'Negotiation strategies', 
-        'Credit protection tips'
+        'Multiple goal tracking',
+        'Timeline optimization',
+        'Progress visualization'
       ],
-      tags: ['Payment Plans', 'Negotiation', 'Credit Protection'],
-      url: '/debt-calculators/medical-debt-calculator',
+      tags: ['Goal Setting', 'Progress Tracking', 'Motivation'],
+      url: '/budget-calculators/savings-goal',
       isWorking: true,
-      color: '#dc2626'
+      color: '#2563eb'
+    },
+    {
+      id: 'college-savings',
+      title: 'College Savings Calculator',
+      subtitle: 'EDUCATION PLANNING',
+      description: 'Calculate how much to save monthly for your child\'s college education without compromising retirement.',
+      icon: '🎓',
+      features: [
+        '529 plan optimization',
+        'Education inflation factor',
+        'State tax benefits'
+      ],
+      tags: ['529 Plans', 'Education Savings', 'Tax Benefits'],
+      url: '/budget-calculators/college-savings',
+      isWorking: true,
+      color: '#7c3aed'
     }
   ];
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Debt Calculators - Financial Freedom Tools",
-    "description": "Comprehensive debt elimination calculators including EMI, debt payoff, credit card, and student loan calculators",
-    "url": "/category/debt-calculators"
+    "name": "Budget Calculators - Financial Planning Tools",
+    "description": "Comprehensive budgeting calculators including zero-based budget, emergency fund, savings goals, and college planning tools",
+    "url": "/budget-calculators"
   };
 
   return (
     <>
       <SEOHead
-        title="Debt Calculators - Free Debt Elimination Tools | Money Plan Lab"
-        description="Break free from debt with our comprehensive calculator suite. EMI calculator, debt payoff planner, credit card payoff, and student loan calculators. All free tools for financial freedom."
-        keywords="debt calculator, EMI calculator, debt payoff, credit card calculator, student loan calculator, debt elimination, financial planning"
-        canonicalUrl="/category/debt-calculators"
+        title="Budget Calculators - Free Financial Planning Tools | Money Plan Lab"
+        description="Build a solid financial foundation with our comprehensive budget calculator suite. Zero-based budgeting, emergency fund, savings goals, and college planning. All free tools for smart money management."
+        keywords="budget calculator, zero based budget, emergency fund calculator, savings goal calculator, college savings, financial planning, budgeting tools"
+        canonicalUrl="/budget-calculators"
         breadcrumbs={breadcrumbs}
         structuredData={structuredData}
       />
       
       <div className="category-page">
-        {/* Breadcrumb */}
-        <nav className="breadcrumb-nav">
-          <div className="container">
-            <ol className="breadcrumb">
-              <li><Link to="/"><span className="home-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9,22 9,12 15,12 15,22"></polyline>
-                </svg>
-              </span> Home</Link></li>
-              <li className="active">Debt Calculators</li>
-            </ol>
-          </div>
-        </nav>
+
 
         {/* Hero Section */}
         <section className="hero-section">
           <div className="container">
             <div className="hero-content">
               <div className="hero-badge">
-                <span className="hero-icon">🔗💥</span>
-                Get Out of Debt
+                <span className="hero-icon">📊</span>
+                Budgeting & Planning
               </div>
-              <h1>Debt Elimination Calculators</h1>
-              <p className="hero-subtitle">Break Free from the Cycle of Debt and Reclaim Your Financial Freedom</p>
+              <h1>Budget & Financial Planning Calculators</h1>
+              <p className="hero-subtitle">Build a Solid Financial Foundation with Smart Budgeting Tools</p>
               <p className="hero-description">
-                Use our comprehensive suite of debt calculators to create your personalized debt elimination strategy. 
-                From EMI planning to complete debt payoff strategies - all tools are free and designed to accelerate your path to financial freedom.
+                Master your money with our comprehensive suite of budgeting calculators. From zero-based budgeting to emergency fund planning - 
+                all tools are designed to help you build a strong financial foundation and achieve your money goals faster.
               </p>
               
               {/* Key Statistics */}
               <div style={{display: 'flex', gap: '15px', justifyContent: 'space-between', maxWidth: '700px', margin: '0 auto', flexWrap: 'nowrap'}}>
                 <div style={{background: 'rgba(255,255,255,0.15)', padding: '14px 18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.2)', flex: '1', textAlign: 'center', minWidth: '120px', backdropFilter: 'blur(10px)'}}>
                   <div style={{fontSize: '1.6rem', fontWeight: '800', marginBottom: '4px'}}>6</div>
-                  <div style={{fontSize: '0.8rem', opacity: '0.9'}}>Debt Calculators</div>
+                  <div style={{fontSize: '0.8rem', opacity: '0.9'}}>Budget Tools</div>
                 </div>
                 <div style={{background: 'rgba(255,255,255,0.15)', padding: '14px 18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.2)', flex: '1', textAlign: 'center', minWidth: '120px', backdropFilter: 'blur(10px)'}}>
-                  <div style={{fontSize: '1.6rem', fontWeight: '800', marginBottom: '4px'}}>6</div>
+                  <div style={{fontSize: '1.6rem', fontWeight: '800', marginBottom: '4px'}}>4</div>
                   <div style={{fontSize: '0.8rem', opacity: '0.9'}}>Ready Now</div>
                 </div>
                 <div style={{background: 'rgba(255,255,255,0.15)', padding: '14px 18px', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.2)', flex: '1', textAlign: 'center', minWidth: '120px', backdropFilter: 'blur(10px)'}}>
@@ -185,8 +140,8 @@ const DebtCategory = () => {
         <section className="calculators-section">
           <div className="container">
             <div className="section-header">
-              <h2>Choose Your Debt Freedom Calculator</h2>
-              <p>Select the calculator that matches your debt situation. Each tool is designed to provide actionable insights for your specific financial goals.</p>
+              <h2>Choose Your Financial Planning Calculator</h2>
+              <p>Select the calculator that matches your budgeting goals. Each tool is designed to provide actionable insights for building financial security.</p>
             </div>
             
             <div className="calculators-grid">
@@ -217,7 +172,7 @@ const DebtCategory = () => {
                     
                     <div className="card-tags">
                       {calculator.tags.map((tag, idx) => (
-                        <span key={idx} className={`tag ${tag === 'Most Popular' ? 'tag-popular' : ''}`}>
+                        <span key={idx} className={`tag ${tag === 'Essential' ? 'tag-popular' : ''}`}>
                           {tag}
                         </span>
                       ))}
@@ -250,38 +205,38 @@ const DebtCategory = () => {
               <div className="strategy-header">
                 <div className="strategy-badge">
                   <span className="strategy-icon">💡</span>
-                  Debt Strategy Guide
+                  Budgeting Strategy Guide
                 </div>
-                <h2>Which Debt Elimination Method Should You Choose?</h2>
+                <h2>Which Budgeting Method Should You Choose?</h2>
               </div>
               
               <div className="strategy-grid">
-                <div className="strategy-card avalanche">
-                  <div className="strategy-icon">🏔️</div>
-                  <h3>Debt Avalanche</h3>
-                  <p className="strategy-subtitle">Mathematical Approach</p>
-                  <p>Pay minimums on all debts, then attack the highest interest rate debt first. Saves the most money mathematically.</p>
+                <div className="strategy-card zero-based">
+                  <div className="strategy-icon">📋</div>
+                  <h3>Zero-Based Budget</h3>
+                  <p className="strategy-subtitle">Every Dollar Has a Job</p>
+                  <p>Assign every dollar you earn to a specific category before spending. Income minus expenses equals zero. Complete control over your money.</p>
                   <div className="strategy-pros">
                     <h4>Best For:</h4>
                     <ul>
-                      <li>Maximizing interest savings</li>
-                      <li>Logical, numbers-focused approach</li>
-                      <li>High-interest credit card debt</li>
+                      <li>Maximum control over spending</li>
+                      <li>Debt elimination focused goals</li>
+                      <li>People who like detailed planning</li>
                     </ul>
                   </div>
                 </div>
                 
-                <div className="strategy-card snowball">
-                  <div className="strategy-icon">❄️</div>
-                  <h3>Debt Snowball</h3>
-                  <p className="strategy-subtitle">Psychological Approach</p>
-                  <p>Pay minimums on all debts, then attack the smallest balance first. Provides quick wins for motivation.</p>
+                <div className="strategy-card fifty-thirty-twenty">
+                  <div className="strategy-icon">⚖️</div>
+                  <h3>50/30/20 Budget</h3>
+                  <p className="strategy-subtitle">Balanced Approach</p>
+                  <p>Allocate 50% to needs, 30% to wants, and 20% to savings and debt repayment. Simple and flexible for busy lifestyles.</p>
                   <div className="strategy-pros">
                     <h4>Best For:</h4>
                     <ul>
-                      <li>Building momentum and motivation</li>
-                      <li>Multiple small debts</li>
-                      <li>Emotional/behavioral change</li>
+                      <li>Beginners to budgeting</li>
+                      <li>Balanced lifestyle approach</li>
+                      <li>Simple money management</li>
                     </ul>
                   </div>
                 </div>
@@ -291,7 +246,7 @@ const DebtCategory = () => {
                 <div className="recommendation-icon">🎯</div>
                 <div className="recommendation-content">
                   <h3>Our Recommendation</h3>
-                  <p>Start with our <strong>Universal Debt Payoff Calculator</strong> to compare both methods with your actual debts. You'll see exact numbers for time saved and interest costs, helping you choose the strategy that works best for your situation and personality.</p>
+                  <p>Start with our <strong>Budget Calculator</strong> to create your zero-based budget if you're serious about financial goals. Use the 50/30/20 method if you prefer simplicity. Both methods work - choose the one you'll stick with consistently!</p>
                 </div>
               </div>
             </div>
@@ -302,33 +257,33 @@ const DebtCategory = () => {
         <section className="tips-section">
           <div className="container">
             <div className="tips-header">
-              <h2>💰 Pro Tips for Faster Debt Freedom</h2>
-              <p>Expert strategies to accelerate your debt elimination journey</p>
+              <h2>💰 Pro Tips for Successful Budgeting</h2>
+              <p>Expert strategies to build and maintain a winning budget</p>
             </div>
             
             <div className="tips-grid">
               <div className="tip-card">
                 <div className="tip-number">1</div>
-                <h3>Find Extra Money</h3>
-                <p>Review your budget for unused subscriptions, dining out, or entertainment. Even $100 extra monthly can save thousands in interest.</p>
+                <h3>Track Before You Budget</h3>
+                <p>Spend one month tracking all expenses before creating your budget. You'll be surprised where your money actually goes.</p>
               </div>
               
               <div className="tip-card">
                 <div className="tip-number">2</div>
-                <h3>Use Windfalls Wisely</h3>
-                <p>Tax refunds, bonuses, and gifts should go directly to debt. A single $2,000 windfall can eliminate 6+ months of payments.</p>
+                <h3>Emergency Fund First</h3>
+                <p>Build your $1,000 starter emergency fund before aggressive debt payoff or investing. This prevents new debt during unexpected expenses.</p>
               </div>
               
               <div className="tip-card">
                 <div className="tip-number">3</div>
-                <h3>Negotiate Lower Rates</h3>
-                <p>Call your credit card companies to request lower rates. A 5% reduction on a $5,000 balance saves $250 annually.</p>
+                <h3>Budget for Fun</h3>
+                <p>Always include entertainment and personal spending money in your budget. Overly restrictive budgets fail because they're unsustainable.</p>
               </div>
               
               <div className="tip-card">
                 <div className="tip-number">4</div>
-                <h3>Automate Everything</h3>
-                <p>Set up automatic payments for more than the minimum. Remove the temptation to spend that money elsewhere.</p>
+                <h3>Review Monthly</h3>
+                <p>Schedule a monthly budget meeting with yourself (or spouse). Adjust categories based on actual spending and upcoming changes.</p>
               </div>
             </div>
           </div>
@@ -339,91 +294,91 @@ const DebtCategory = () => {
           <div className="container">
             <div className="seo-content-wrapper">
               <div className="seo-content-header">
-                <h2>Complete Guide to Debt Elimination Calculators</h2>
-                <p>Master your financial freedom with the world's most comprehensive debt calculator toolkit</p>
+                <h2>Complete Guide to Budget & Planning Calculators</h2>
+                <p>Master your financial foundation with the world's most comprehensive budgeting toolkit</p>
               </div>
               
               <div className="seo-content-grid">
                 <div className="seo-content-card">
-                  <div className="seo-icon">📊</div>
-                  <h3>EMI Calculator Benefits</h3>
-                  <p>Our Universal EMI Calculator supports all loan types including home loans, personal loans, car loans, and business loans. Calculate accurate EMI payments with variable interest rates, prepayment options, and flexible tenure adjustments. Perfect for comparing loan offers from different banks and financial institutions worldwide.</p>
+                  <div className="seo-icon">📋</div>
+                  <h3>Zero-Based Budget Calculator Benefits</h3>
+                  <p>Our Budget Calculator follows Dave Ramsey's proven zero-based budgeting method where every dollar has a purpose. Create detailed monthly budgets with income tracking, expense categorization, and surplus/deficit analysis. Perfect for individuals and families serious about financial control.</p>
                   <ul className="seo-list">
-                    <li>Supports USD, EUR, GBP, CAD, AUD, JPY, CHF, SEK, NOK, DKK, NZD, INR and more currencies</li>
-                    <li>Compare floating vs fixed interest rate loans globally</li>
-                    <li>Calculate impact of prepayments and part payments</li>
-                    <li>Generate detailed amortization schedules</li>
+                    <li>Supports all global currencies including USD, EUR, GBP, CAD, AUD, INR</li>
+                    <li>Built-in expense categories based on financial best practices</li>
+                    <li>Real-time budget variance tracking and alerts</li>
+                    <li>Export budget reports for financial planning</li>
                   </ul>
                 </div>
                 
                 <div className="seo-content-card">
-                  <div className="seo-icon">🔥</div>
-                  <h3>Debt Payoff Strategy Calculator</h3>
-                  <p>Choose between debt avalanche and debt snowball methods using our advanced debt payoff calculator. Input multiple debts, compare strategies, and see exact timelines for becoming debt-free. Supports credit cards, personal loans, student loans, and all consumer debt types.</p>
+                  <div className="seo-icon">🛡️</div>
+                  <h3>Emergency Fund Calculator</h3>
+                  <p>Calculate the exact emergency fund amount you need based on monthly expenses, family size, job stability, and income sources. Our calculator considers multiple factors to determine whether you need 3, 4, 5, or 6 months of expenses saved.</p>
                   <ul className="seo-list">
-                    <li>Compare avalanche vs snowball methods scientifically</li>
-                    <li>Calculate total interest savings potential</li>
-                    <li>Set custom extra payment amounts</li>
-                    <li>Export payoff timeline and strategy reports</li>
+                    <li>Personalized recommendations based on job stability</li>
+                    <li>Family size and dependent considerations</li>
+                    <li>Timeline planning for reaching your emergency fund goal</li>
+                    <li>Monthly savings amount calculations</li>
                   </ul>
                 </div>
                 
                 <div className="seo-content-card">
-                  <div className="seo-icon">💳</div>
-                  <h3>Credit Card Debt Calculator</h3>
-                  <p>Specifically designed for high-interest credit card debt elimination. Calculate minimum payment traps, compare balance transfer options, and optimize payoff strategies. Essential for anyone carrying credit card balances and looking to save on interest charges.</p>
+                  <div className="seo-icon">🎯</div>
+                  <h3>Savings Goal Calculator</h3>
+                  <p>Set and track multiple savings goals simultaneously with detailed timelines and monthly contribution requirements. Whether saving for vacation, car down payment, or home purchase, our calculator optimizes your savings strategy.</p>
                   <ul className="seo-list">
-                    <li>Compare multiple credit card payoff strategies</li>
-                    <li>Calculate balance transfer savings potential</li>
-                    <li>Analyze APR impact on total payments</li>
-                    <li>Plan systematic debt elimination timeline</li>
+                    <li>Multiple concurrent savings goals tracking</li>
+                    <li>Inflation adjustment for long-term goals</li>
+                    <li>Interest earning calculations for savings accounts</li>
+                    <li>Goal priority optimization and timeline adjustment</li>
                   </ul>
                 </div>
                 
                 <div className="seo-content-card">
                   <div className="seo-icon">🎓</div>
-                  <h3>Student Loan Calculator</h3>
-                  <p>Navigate education loan repayment with our comprehensive student loan calculator. Compare standard vs income-driven repayment plans, calculate loan forgiveness timelines, and optimize repayment strategies for both federal and private student loans.</p>
+                  <h3>College Savings Calculator</h3>
+                  <p>Plan for your child's education expenses with our comprehensive college savings calculator. Compare 529 plans, calculate monthly savings needed, and factor in education inflation rates to ensure adequate college funding.</p>
                   <ul className="seo-list">
-                    <li>Compare income-driven repayment options</li>
-                    <li>Calculate PSLF (Public Service Loan Forgiveness) timelines</li>
-                    <li>Analyze refinancing vs federal loan benefits</li>
-                    <li>Plan graduated vs standard repayment impact</li>
+                    <li>529 college savings plan optimization</li>
+                    <li>Education cost inflation tracking (typically 6-8% annually)</li>
+                    <li>State tax benefit calculations for 529 contributions</li>
+                    <li>Age-based investment allocation recommendations</li>
                   </ul>
                 </div>
               </div>
               
               <div className="seo-benefits">
                 <div className="benefits-header">
-                  <h3>Why Choose Our Debt Calculators?</h3>
+                  <h3>Why Choose Our Budget Calculators?</h3>
                 </div>
                 <div className="benefits-grid">
                   <div className="benefit-item">
                     <span className="benefit-icon">🏆</span>
                     <div className="benefit-content">
-                      <h4>Most Accurate Calculations</h4>
-                      <p>Bank-grade algorithms ensure precise EMI and interest calculations following international banking standards</p>
+                      <h4>Proven Budgeting Methods</h4>
+                      <p>Based on Dave Ramsey's Financial Peace University and other proven budgeting systems used by millions</p>
                     </div>
                   </div>
                   <div className="benefit-item">
                     <span className="benefit-icon">🌍</span>
                     <div className="benefit-content">
                       <h4>Global Currency Support</h4>
-                      <p>Calculate loans in USD, EUR, GBP, CAD, AUD, JPY, CHF, SEK, NOK, DKK, NZD, INR and more currencies</p>
+                      <p>Budget in USD, EUR, GBP, CAD, AUD, JPY, CHF, SEK, NOK, DKK, NZD, INR and more currencies</p>
                     </div>
                   </div>
                   <div className="benefit-item">
                     <span className="benefit-icon">📱</span>
                     <div className="benefit-content">
                       <h4>Mobile Optimized</h4>
-                      <p>Responsive design works perfectly on smartphones, tablets, and desktops</p>
+                      <p>Responsive design works perfectly on smartphones, tablets, and desktops for budgeting anywhere</p>
                     </div>
                   </div>
                   <div className="benefit-item">
                     <span className="benefit-icon">🔒</span>
                     <div className="benefit-content">
                       <h4>100% Private & Secure</h4>
-                      <p>No registration required, no data stored, completely anonymous calculations</p>
+                      <p>No registration required, no data stored, completely anonymous budget calculations</p>
                     </div>
                   </div>
                 </div>
@@ -436,8 +391,8 @@ const DebtCategory = () => {
         <section className="faq-section">
           <div className="container">
             <div className="faq-header">
-              <h2>🤔 Frequently Asked Questions About Debt Calculators</h2>
-              <p>Get answers to the most commonly searched questions about debt elimination and loan calculators</p>
+              <h2>🤔 Frequently Asked Questions About Budget Calculators</h2>
+              <p>Get answers to the most commonly searched questions about budgeting and financial planning</p>
             </div>
             
             <div className="faq-container">
@@ -458,11 +413,13 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>How accurate are online EMI calculators for loan planning?</span>
+                  <span>What's the difference between zero-based budgeting and 50/30/20 budgeting?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>Our EMI calculators use bank-grade algorithms and follow international banking standards for accuracy. They provide precise calculations for monthly payments, total interest, and repayment schedules. However, final EMI amounts may vary slightly based on actual loan processing fees, insurance, and specific bank policies. For major loans, consult your financial institution for precise calculations including all fees and charges.</p>
+                  <p><strong>Zero-Based Budgeting:</strong> Every dollar you earn is assigned to a specific category before you spend it. Income minus expenses equals zero. Provides maximum control and is excellent for debt elimination and aggressive savings goals.</p>
+                  <p><strong>50/30/20 Budgeting:</strong> A simplified approach where 50% goes to needs (housing, utilities, food), 30% to wants (entertainment, dining out), and 20% to savings and debt repayment. Easier to maintain but less precise.</p>
+                  <p>Choose zero-based if you want maximum control, or 50/30/20 if you prefer simplicity and are just starting with budgeting.</p>
                 </div>
               </div>
 
@@ -481,13 +438,17 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>What's the difference between debt avalanche and debt snowball methods?</span>
+                  <span>How much should I have in my emergency fund?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p><strong>Debt Avalanche:</strong> Pay minimum amounts on all debts, then attack the highest interest rate debt first. This method saves the most money mathematically by reducing total interest payments. Best for logical, numbers-focused people.</p>
-                  <p><strong>Debt Snowball:</strong> Pay minimum amounts on all debts, then attack the smallest balance first. This method provides quick psychological wins and motivation. Best for people who need emotional momentum to stay consistent.</p>
-                  <p>Our Universal Debt Payoff Calculator shows you exact numbers for both methods with your specific debts, helping you choose the right strategy.</p>
+                  <p>The standard recommendation is 3-6 months of expenses, but the exact amount depends on your situation:</p>
+                  <ul>
+                    <li><strong>3 months:</strong> Stable job, dual income household, excellent job market in your field</li>
+                    <li><strong>4-5 months:</strong> Average job stability, some dependents, good job market</li>
+                    <li><strong>6+ months:</strong> Unstable income, single income household, volatile industry, health issues</li>
+                  </ul>
+                  <p>Start with $1,000 as a starter emergency fund, then build to your full amount. Our Emergency Fund Calculator considers your specific situation to give personalized recommendations.</p>
                 </div>
               </div>
 
@@ -506,17 +467,19 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>How much extra payment can reduce my loan tenure significantly?</span>
+                  <span>Should I save for retirement or my child's college education first?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>Even small extra payments create dramatic results:</p>
+                  <p><strong>Retirement should generally come first</strong> for these important reasons:</p>
                   <ul>
-                    <li><strong>$500 extra monthly</strong> on a $500,000 home loan can reduce tenure by 8-12 years</li>
-                    <li><strong>$200 extra monthly</strong> on a $50,000 car loan can save 2-3 years</li>
-                    <li><strong>$100 extra monthly</strong> on credit cards can cut payoff time by 70%</li>
+                    <li>You can borrow for college, but not for retirement</li>
+                    <li>Compound interest works better with more time</li>
+                    <li>Your child can work, get scholarships, and attend affordable schools</li>
+                    <li>You'll be a financial burden on your children if you don't have retirement savings</li>
                   </ul>
-                  <p>Use our EMI Calculator's "Extra Payment" feature to see exact savings for your specific loan amount and interest rate in any currency.</p>
+                  <p><strong>The balanced approach:</strong> Contribute enough to get your full employer 401k match first (free money), then save for college, then max out retirement accounts.</p>
+                  <p>Our College Savings Calculator shows you how to save for education without compromising retirement goals.</p>
                 </div>
               </div>
 
@@ -535,24 +498,21 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>Should I pay off high-interest debt or invest money for higher returns?</span>
+                  <span>What percentage of income should go to different budget categories?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>This depends on the interest rate comparison:</p>
-                  <p><strong>Pay off debt first if:</strong></p>
+                  <p>Here are the recommended percentage ranges for different budget categories:</p>
                   <ul>
-                    <li>Credit card debt (18-42% APR) - No investment consistently beats this</li>
-                    <li>Personal loans (12-24%) - Very difficult to beat after-tax</li>
-                    <li>You need guaranteed returns and peace of mind</li>
+                    <li><strong>Housing:</strong> 25-28% of take-home pay (including mortgage/rent, utilities, insurance)</li>
+                    <li><strong>Transportation:</strong> 10-15% (car payment, insurance, gas, maintenance)</li>
+                    <li><strong>Food:</strong> 10-15% (groceries and dining out combined)</li>
+                    <li><strong>Savings:</strong> 10-20% (emergency fund, retirement, goals)</li>
+                    <li><strong>Debt Payments:</strong> 5-10% (minimum payments on all non-mortgage debt)</li>
+                    <li><strong>Personal/Entertainment:</strong> 5-10% (fun money, hobbies, personal care)</li>
+                    <li><strong>Insurance:</strong> 5-10% (health, life, disability)</li>
                   </ul>
-                  <p><strong>Consider investing if:</strong></p>
-                  <ul>
-                    <li>Home loan debt (7-9%) - Stock market historically averages 12-15%</li>
-                    <li>You have employer 401k matching</li>
-                    <li>You have stable income and emergency fund</li>
-                  </ul>
-                  <p>Our debt calculators help you see the guaranteed savings from debt payoff vs potential investment returns.</p>
+                  <p>These are guidelines - adjust based on your priorities and life stage. Our Budget Calculator helps optimize these percentages for your situation.</p>
                 </div>
               </div>
 
@@ -571,18 +531,25 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>What credit score do I need for debt consolidation loans?</span>
+                  <span>How do I stick to my budget when unexpected expenses come up?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>Credit score requirements for debt consolidation vary by country and lender:</p>
+                  <p>Here are proven strategies to handle budget challenges:</p>
+                  <p><strong>Prevention strategies:</strong></p>
                   <ul>
-                    <li><strong>750+ Credit Score:</strong> Excellent rates (6-12%), all lenders available</li>
-                    <li><strong>700-749:</strong> Good rates (8-16%), most lenders approve</li>
-                    <li><strong>650-699:</strong> Higher rates (12-22%), limited options</li>
-                    <li><strong>Below 650:</strong> Difficult approval, very high rates (18%+)</li>
+                    <li>Build sinking funds for predictable irregular expenses (car maintenance, gifts, annual insurance)</li>
+                    <li>Keep your $1,000 starter emergency fund for true emergencies</li>
+                    <li>Include a "miscellaneous" category (5-10% of income) for small unexpected expenses</li>
+                    <li>Review and adjust your budget monthly based on actual spending</li>
                   </ul>
-                  <p>Use our debt consolidation calculator to compare your current payments vs consolidated loan payments at different interest rates before applying.</p>
+                  <p><strong>When unexpected expenses occur:</strong></p>
+                  <ul>
+                    <li>First, check if you can adjust other categories for the month</li>
+                    <li>Use your miscellaneous fund or emergency fund if necessary</li>
+                    <li>Consider if this expense should become a regular budget category</li>
+                    <li>Don't abandon your budget - adjust it and keep going</li>
+                  </ul>
                 </div>
               </div>
 
@@ -601,26 +568,20 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>Is it better to prepay mortgage or invest money for higher returns?</span>
+                  <span>Should I use gross income or net income for budgeting?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>This is one of the most common financial dilemmas worldwide. Consider these factors:</p>
-                  <p><strong>Prepay Mortgage When:</strong></p>
+                  <p><strong>Always use net income (take-home pay) for budgeting.</strong> This is the money you actually receive and can spend.</p>
+                  <p><strong>Why net income is better:</strong></p>
                   <ul>
-                    <li>Interest rate is above 6-7%</li>
-                    <li>You're in higher tax bracket and lost mortgage interest deductions</li>
-                    <li>You prefer guaranteed returns over market risk</li>
-                    <li>Loan tenure is less than 10 years remaining</li>
+                    <li>It's the actual money available to spend</li>
+                    <li>Taxes and deductions are already removed</li>
+                    <li>Creates realistic and achievable budgets</li>
+                    <li>Prevents overspending based on gross income</li>
                   </ul>
-                  <p><strong>Invest When:</strong></p>
-                  <ul>
-                    <li>Mortgage rate is below 5%</li>
-                    <li>You have 15+ years for investments</li>
-                    <li>You're young with stable income</li>
-                    <li>You can handle market volatility</li>
-                  </ul>
-                  <p>Our EMI calculator shows guaranteed savings from prepayment, while investment returns are market-dependent.</p>
+                  <p><strong>Exception:</strong> Some financial ratios (like debt-to-income for loans) use gross income, but for monthly budgeting, always use your actual take-home pay.</p>
+                  <p>Our Budget Calculator automatically works with your net income to create realistic monthly budgets.</p>
                 </div>
               </div>
 
@@ -639,20 +600,23 @@ const DebtCategory = () => {
                     e.target.classList.add('active');
                   }
                 }}>
-                  <span>How to calculate debt-to-income ratio for loan eligibility?</span>
+                  <span>How long does it take to see results from budgeting?</span>
                   <span className="faq-icon">+</span>
                 </button>
                 <div className="faq-answer">
-                  <p>Debt-to-Income (DTI) ratio is crucial for loan approvals worldwide:</p>
-                  <p><strong>Formula:</strong> (Total Monthly Debt Payments ÷ Monthly Gross Income) × 100</p>
-                  <p><strong>Global Banking Guidelines:</strong></p>
+                  <p>Budgeting results vary by individual, but here's what to expect:</p>
+                  <p><strong>Month 1:</strong> Awareness and shock - you'll discover where your money actually goes</p>
+                  <p><strong>Month 2-3:</strong> Adjustment period - fine-tuning categories and building habits</p>
+                  <p><strong>Month 4-6:</strong> Rhythm development - budgeting becomes more natural and automatic</p>
+                  <p><strong>Month 6-12:</strong> Significant progress - emergency fund building, debt reduction, savings growth</p>
+                  <p><strong>Financial improvements you'll see:</strong></p>
                   <ul>
-                    <li><strong>Below 28%:</strong> Excellent - Easy loan approval</li>
-                    <li><strong>28-36%:</strong> Acceptable - Standard approval process</li>
-                    <li><strong>36-43%:</strong> Risky - Requires higher income proof</li>
-                    <li><strong>Above 43%:</strong> Rejection likely - Pay down existing debt first</li>
+                    <li>Reduced financial stress and money fights</li>
+                    <li>More money available for savings and debt payoff</li>
+                    <li>Better control over impulse spending</li>
+                    <li>Clear progress toward financial goals</li>
                   </ul>
-                  <p>Example: If your monthly income is $10,000 and existing debt payments are $3,500, your DTI is 35% - acceptable for most loans.</p>
+                  <p>Remember: Budgets work immediately, but developing the habit takes 3-6 months of consistency.</p>
                 </div>
               </div>
             </div>
@@ -663,7 +627,7 @@ const DebtCategory = () => {
       <style jsx>{`
         .category-page {
           min-height: 100vh;
-          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .container {
@@ -802,7 +766,7 @@ const DebtCategory = () => {
         .calculator-card:hover {
           transform: translateY(-8px);
           box-shadow: 0 32px 64px -12px rgba(0,0,0,0.25);
-          border-color: #dc2626;
+          border-color: #f59e0b;
         }
 
         .calculator-card.coming-soon {
@@ -914,7 +878,7 @@ const DebtCategory = () => {
         }
 
         .tag-popular {
-          background: linear-gradient(135deg, #667eea, #764ba2);
+          background: linear-gradient(135deg, #f59e0b, #d97706);
           color: white;
         }
 
@@ -932,13 +896,13 @@ const DebtCategory = () => {
           justify-content: center;
           gap: 8px;
           text-decoration: none;
-          background: linear-gradient(135deg, #dc2626, #b91c1c);
+          background: linear-gradient(135deg, #f59e0b, #d97706);
           color: white;
         }
 
         .card-button:hover:not(.disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 12px 24px rgba(220, 38, 38, 0.3);
+          box-shadow: 0 12px 24px rgba(245, 158, 11, 0.3);
         }
 
         .card-button.disabled {
@@ -1082,7 +1046,7 @@ const DebtCategory = () => {
 
         .tips-section {
           padding: 60px 0;
-          background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 100%);
+          background: linear-gradient(135deg, #ecfccb 0%, #bef264 100%);
         }
 
         .tips-header {
@@ -1092,14 +1056,14 @@ const DebtCategory = () => {
 
         .tips-header h2 {
           font-size: clamp(1.8rem, 3vw, 2.5rem);
-          color: #92400e;
+          color: #365314;
           margin-bottom: 16px;
           font-weight: 700;
         }
 
         .tips-header p {
           font-size: 1.1rem;
-          color: #b45309;
+          color: #4d7c0f;
           font-weight: 500;
         }
 
@@ -1127,7 +1091,7 @@ const DebtCategory = () => {
         .tip-number {
           width: 48px;
           height: 48px;
-          background: linear-gradient(135deg, #f59e0b, #d97706);
+          background: linear-gradient(135deg, #84cc16, #65a30d);
           color: white;
           border-radius: 50%;
           display: flex;
@@ -1151,9 +1115,10 @@ const DebtCategory = () => {
           font-size: 0.95rem;
         }
 
+        /* SEO Content Section */
         .seo-content-section {
           padding: 60px 0;
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+          background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
         }
 
         .seo-content-wrapper {
@@ -1168,14 +1133,14 @@ const DebtCategory = () => {
 
         .seo-content-header h2 {
           font-size: clamp(2rem, 4vw, 2.8rem);
-          color: #0c4a6e;
+          color: #9a3412;
           margin-bottom: 16px;
           font-weight: 800;
         }
 
         .seo-content-header p {
           font-size: 1.2rem;
-          color: #0369a1;
+          color: #c2410c;
           font-weight: 500;
         }
 
@@ -1197,7 +1162,7 @@ const DebtCategory = () => {
 
         .seo-content-card:hover {
           transform: translateY(-5px);
-          border-color: #0ea5e9;
+          border-color: #f59e0b;
           box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
@@ -1209,7 +1174,7 @@ const DebtCategory = () => {
 
         .seo-content-card h3 {
           font-size: 1.4rem;
-          color: #0c4a6e;
+          color: #9a3412;
           margin-bottom: 16px;
           font-weight: 700;
         }
@@ -1239,7 +1204,7 @@ const DebtCategory = () => {
           content: '▶';
           position: absolute;
           left: 0;
-          color: #0ea5e9;
+          color: #f59e0b;
           font-size: 0.8rem;
         }
 
@@ -1248,7 +1213,7 @@ const DebtCategory = () => {
           border-radius: 24px;
           padding: 40px;
           box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-          border: 2px solid #e0f2fe;
+          border: 2px solid #fed7aa;
         }
 
         .benefits-header {
@@ -1258,7 +1223,7 @@ const DebtCategory = () => {
 
         .benefits-header h3 {
           font-size: 1.8rem;
-          color: #0c4a6e;
+          color: #9a3412;
           font-weight: 700;
         }
 
@@ -1279,7 +1244,7 @@ const DebtCategory = () => {
           flex-shrink: 0;
           width: 48px;
           height: 48px;
-          background: linear-gradient(135deg, #0ea5e9, #0284c7);
+          background: linear-gradient(135deg, #f59e0b, #d97706);
           border-radius: 12px;
           display: flex;
           align-items: center;
@@ -1299,9 +1264,10 @@ const DebtCategory = () => {
           font-size: 0.95rem;
         }
 
+        /* FAQ Section */
         .faq-section {
           padding: 60px 0;
-          background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+          background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
         }
 
         .faq-header {
@@ -1311,14 +1277,14 @@ const DebtCategory = () => {
 
         .faq-header h2 {
           font-size: clamp(2rem, 4vw, 2.8rem);
-          color: #92400e;
+          color: #166534;
           margin-bottom: 16px;
           font-weight: 800;
         }
 
         .faq-header p {
           font-size: 1.2rem;
-          color: #b45309;
+          color: #15803d;
           font-weight: 500;
         }
 
@@ -1338,7 +1304,7 @@ const DebtCategory = () => {
         }
 
         .faq-item:hover {
-          border-color: #f59e0b;
+          border-color: #84cc16;
           box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
@@ -1360,17 +1326,17 @@ const DebtCategory = () => {
         }
 
         .faq-question:hover {
-          background: #fffbeb;
+          background: #f7fee7;
         }
 
         .faq-question.active {
-          background: #fef3c7;
-          color: #92400e;
+          background: #dcfce7;
+          color: #166534;
         }
 
         .faq-question.active .faq-icon {
           transform: rotate(45deg);
-          color: #f59e0b;
+          color: #84cc16;
         }
 
         .faq-icon {
@@ -1416,6 +1382,7 @@ const DebtCategory = () => {
           font-weight: 600;
         }
 
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
           .hero-section {
             padding: 40px 0;
@@ -1510,4 +1477,4 @@ const DebtCategory = () => {
   );
 };
 
-export default DebtCategory;
+export default BudgetCategory;
