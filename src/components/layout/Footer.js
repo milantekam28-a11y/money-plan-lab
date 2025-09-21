@@ -1,5 +1,6 @@
 // src/components/layout/Footer.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,16 +16,16 @@ const Footer = () => {
               Take charge of your money, career and life goals with powerful financial planning tools based on proven mathematical principles. Start your journey to financial freedom today.
             </p>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Facebook">
+              <a href="https://facebook.com/moneyplanlab" className="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <span>📘</span>
               </a>
-              <a href="#" className="social-link" aria-label="Twitter">
+              <a href="https://twitter.com/moneyplanlab" className="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
                 <span>🐦</span>
               </a>
-              <a href="#" className="social-link" aria-label="LinkedIn">
+              <a href="https://linkedin.com/company/moneyplanlab" className="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <span>💼</span>
               </a>
-              <a href="#" className="social-link" aria-label="YouTube">
+              <a href="https://youtube.com/@moneyplanlab" className="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
                 <span>📺</span>
               </a>
             </div>
@@ -33,41 +34,42 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Debt Calculators</h3>
             <ul className="footer-links">
-              <li><a href="/debt-calculators" target="_blank">General Debt Payoff</a></li>
-              <li><a href="credit-card-debt.html" target="_blank">Credit Card Debt</a></li>
-              <li><a href="student-loan.html" target="_blank">Student Loan Payoff</a></li>
-              <li><a href="car-loan.html" target="_blank">Car Loan</a></li>
-              <li><a href="medical_debt_calculator.html" target="_blank">Medical Debt</a></li>
+              <li><Link to="/debt-calculators/emi-calculator">EMI Calculator</Link></li>
+              <li><Link to="/debt-calculators/universal-debt-payoff">Debt Payoff Calculator</Link></li>
+              <li><Link to="/debt-calculators/credit-card-debt">Credit Card Debt</Link></li>
+              <li><Link to="/debt-calculators/student-loan-payoff">Student Loan Payoff</Link></li>
+              <li><Link to="/debt-calculators/car-loan-calculator">Car Loan Calculator</Link></li>
+              <li><Link to="/debt-calculators/medical-debt-calculator">Medical Debt Calculator</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h3>Investment & Planning</h3>
+            <h3>Budget & Planning</h3>
             <ul className="footer-links">
-              <li><a href="budget_calculator.html" target="_blank">Budget Calculator</a></li>
-              <li><a href="emergency-fund.html" target="_blank">Emergency Fund</a></li>
-              <li><a href="investment.html" target="_blank">Investment Calculator</a></li>
-              <li><a href="retirement.html" target="_blank">Retirement Planning</a></li>
-              <li><a href="401k-calculator.html" target="_blank">401k Calculator</a></li>
-              <li><a href="net-worth.html" target="_blank">Net Worth Calculator</a></li>
+              <li><Link to="/budget-calculators/budget-calculator">Budget Calculator</Link></li>
+              <li><Link to="/budget-calculators/emergency-fund">Emergency Fund Calculator</Link></li>
+              <li><Link to="/budget-calculators/savings-goal">Savings Goal Calculator</Link></li>
+              <li><Link to="/budget-calculators/college-savings">College Savings Calculator</Link></li>
+              <li><Link to="/investment-calculators/compound-interest">Compound Interest</Link></li>
+              <li><Link to="/investment-calculators/retirement">Retirement Planning</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h3>Real Estate & Tools</h3>
+            <h3>Company & Legal</h3>
             <ul className="footer-links">
-              <li><a href="mortgage.html" target="_blank">Mortgage Calculator</a></li>
-              <li><a href="house-affordability.html" target="_blank">House Affordability</a></li>
-              <li><a href="life-insurance.html" target="_blank">Life Insurance</a></li>
-              <li><a href="vacation-savings.html" target="_blank">Vacation Savings</a></li>
-              <li><a href="days-between-dates.html" target="_blank">Days Between Dates</a></li>
-              <li><a href="tax-calculator.html" target="_blank">Tax Calculator</a></li>
+              <li><Link to="/calculators">All Calculators</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
+              <li><Link to="/disclaimer">Disclaimer</Link></li>
+              <li><Link to="/privacy">Privacy Policy</Link></li>
+              <li><Link to="/">Home</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2025 Money Plan Lab. All rights reserved. | Part of <a href="https://moneyplanlab.com/" target="_blank" style={{color: 'var(--primary)'}}>MoneyPlanLab.com</a> - Your complete financial education resource</p>
+          <p>&copy; 2025 Money Plan Lab. All rights reserved. | Part of <a href="https://moneyplanlab.com/" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary)'}}>MoneyPlanLab.com</a> - Your complete financial education resource</p>
         </div>
       </div>
 
@@ -146,6 +148,8 @@ const Footer = () => {
 
         .footer-links {
           list-style: none;
+          margin: 0;
+          padding: 0;
         }
 
         .footer-links li {
@@ -156,6 +160,8 @@ const Footer = () => {
           color: var(--gray-400);
           text-decoration: none;
           transition: color 0.3s ease;
+          display: block;
+          padding: 2px 0;
         }
 
         .footer-links a:hover {
@@ -169,11 +175,28 @@ const Footer = () => {
           color: var(--gray-500);
         }
 
+        .footer-bottom a {
+          color: var(--primary);
+          text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+          text-decoration: underline;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .footer-grid {
             grid-template-columns: 1fr;
             gap: 40px;
+          }
+          
+          .footer-section h3 {
+            font-size: 1.2rem;
+          }
+          
+          .footer-links a {
+            font-size: 0.9rem;
           }
         }
       `}</style>

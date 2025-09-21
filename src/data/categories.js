@@ -1,11 +1,11 @@
-// src/data/categories.js
+// src/data/categories.js - FIXED URLs
 export const categories = {
   debt: {
     name: 'Debt Calculators',
     icon: '🔗💥',
     description: 'Break free from the cycle of debt and reclaim your financial freedom with proven debt elimination strategies',
     color: 'linear-gradient(135deg, #dc2626, #b91c1c)',
-    categoryUrl: '/category/debt-calculators',
+    categoryUrl: '/debt-calculators',  // ✅ FIXED: Removed /category/ prefix
     seoKeywords: 'debt payoff calculator, debt snowball, debt avalanche, credit card payoff, loan calculator',
     calculators: [
       {
@@ -17,11 +17,11 @@ export const categories = {
         features: ['Monthly EMI calculation', 'Total interest payable', 'Payment breakdown'],
         tags: ['Most Popular', 'Loan Calculator', 'Monthly Payment'],
         featured: true,
-        // Breadcrumb: Home > EMI Calculator (Direct, no category)
-        url: '/category/debt-calculators/emi-calculator',
+        // ✅ FIXED: Updated URLs to match App.js routes
+        url: '/debt-calculators/emi-calculator',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'EMI Calculator', url: '/category/debt-calculators/emi-calculator' }
+          { name: 'EMI Calculator', url: '/debt-calculators/emi-calculator' }
         ]
       },
       {
@@ -33,11 +33,11 @@ export const categories = {
         features: ['Multiple debt strategies', 'Global currency support', 'Interest savings calculator'],
         tags: ['Most Popular', 'Debt Avalanche', 'Debt Snowball'],
         featured: true,
-        // Breadcrumb: Home > Debt Payoff Calculator
-        url: '/category/debt-calculators/debt-payoff-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/debt-calculators/universal-debt-payoff',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Debt Payoff Calculator', url: '/category/debt-calculators/debt-payoff-calculator' }
+          { name: 'Debt Payoff Calculator', url: '/debt-calculators/universal-debt-payoff' }
         ]
       },
       {
@@ -48,11 +48,11 @@ export const categories = {
         icon: '💳',
         features: ['APR impact analysis', 'Balance transfer options', 'Payment optimization'],
         tags: ['High Interest', 'APR Calculator', 'Balance Transfer'],
-        // Breadcrumb: Home > Credit Card Payoff Calculator
-        url: '/category/debt-calculators/credit-card-payoff-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/debt-calculators/credit-card-debt',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Credit Card Payoff Calculator', url: '/category/debt-calculators/credit-card-payoff-calculator' }
+          { name: 'Credit Card Payoff Calculator', url: '/debt-calculators/credit-card-debt' }
         ]
       },
       {
@@ -63,11 +63,11 @@ export const categories = {
         icon: '🎓',
         features: ['Refinancing comparison', 'Forgiveness program eligibility', 'Extra payment impact'],
         tags: ['Federal Loans', 'PSLF', 'Refinancing'],
-        // Breadcrumb: Home > Student Loan Payoff Calculator
-        url: '/category/debt-calculators/student-loan-payoff-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/debt-calculators/student-loan-payoff',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Student Loan Payoff Calculator', url: '/category/debt-calculators/student-loan-payoff-calculator' }
+          { name: 'Student Loan Payoff Calculator', url: '/debt-calculators/student-loan-payoff' }
         ]
       },
       {
@@ -81,11 +81,11 @@ export const categories = {
         featured: true,
         available: true,
         status: 'active',
-        // Breadcrumb: Home > Car Loan Calculator
-        url: '/category/debt-calculators/car-loan-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/debt-calculators/car-loan-calculator',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Car Loan Calculator', url: '/category/debt-calculators/car-loan-calculator' }
+          { name: 'Car Loan Calculator', url: '/debt-calculators/car-loan-calculator' }
         ]
       },
       {
@@ -97,11 +97,11 @@ export const categories = {
         features: ['Payment plan options', 'Negotiation strategies', 'Credit protection tips'],
         tags: ['Payment Plans', 'Negotiation', 'Credit Protection'],
         status: 'active',
-        // Breadcrumb: Home > Medical Debt Calculator
-        url: '/category/debt-calculators/medical-debt-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/debt-calculators/medical-debt-calculator',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Medical Debt Calculator', url: '/category/debt-calculators/medical-debt-calculator' }
+          { name: 'Medical Debt Calculator', url: '/debt-calculators/medical-debt-calculator' }
         ]
       }
     ]
@@ -111,7 +111,7 @@ export const categories = {
     icon: '📊',
     description: 'Build a solid financial foundation with smart budgeting tools and emergency planning strategies',
     color: 'linear-gradient(135deg, #f59e0b, #d97706)',
-    categoryUrl: '/category/budget-calculators',
+    categoryUrl: '/budget-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'budget',
@@ -122,11 +122,11 @@ export const categories = {
         features: ['Income vs. expenses tracking', 'Category recommendations', 'Surplus/deficit analysis'],
         tags: ['Essential', 'Zero-Based', 'EveryDollar'],
         featured: true,
-        // Breadcrumb: Home > Budget Calculator
-        url: '/category/budget-calculators/budget-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/budget-calculators/budget-calculator',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Budget Calculator', url: '/category/budget-calculators/budget-calculator' }
+          { name: 'Budget Calculator', url: '/budget-calculators/budget-calculator' }
         ]
       },
       {
@@ -137,11 +137,11 @@ export const categories = {
         icon: '🛡️',
         features: ['3-6 months expenses', 'Job stability factors', 'Savings timeline'],
         tags: ['3-6 Months', 'Safety Net', 'Peace of Mind'],
-        // Breadcrumb: Home > Emergency Fund Calculator
-        url: '/category/budget-calculators/emergency-fund-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/budget-calculators/emergency-fund',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Emergency Fund Calculator', url: '/category/budget-calculators/emergency-fund-calculator' }
+          { name: 'Emergency Fund Calculator', url: '/budget-calculators/emergency-fund' }
         ]
       },
       {
@@ -152,11 +152,11 @@ export const categories = {
         icon: '🎯',
         features: ['Multiple goal tracking', 'Timeline optimization', 'Progress visualization'],
         tags: ['Goal Setting', 'Progress Tracking', 'Motivation'],
-        // Breadcrumb: Home > Savings Goal Calculator
-        url: '/category/budget-calculators/savings-goal-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/budget-calculators/savings-goal',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'Savings Goal Calculator', url: '/category/budget-calculators/savings-goal-calculator' }
+          { name: 'Savings Goal Calculator', url: '/budget-calculators/savings-goal' }
         ]
       },
       {
@@ -167,11 +167,11 @@ export const categories = {
         icon: '🎓',
         features: ['529 plan optimization', 'Education inflation factor', 'State tax benefits'],
         tags: ['529 Plans', 'Education Savings', 'Tax Benefits'],
-        // Breadcrumb: Home > College Savings Calculator
-        url: '/category/budget-calculators/college-savings-calculator',
+        // ✅ FIXED: Updated URL
+        url: '/budget-calculators/college-savings',
         breadcrumbs: [
           { name: 'Home', url: '/' },
-          { name: 'College Savings Calculator', url: '/category/budget-calculators/college-savings-calculator' }
+          { name: 'College Savings Calculator', url: '/budget-calculators/college-savings' }
         ]
       }
     ]
@@ -181,7 +181,7 @@ export const categories = {
     icon: '📈',
     description: 'Build wealth and plan for your golden years with compound interest and smart investment strategies',
     color: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
-    categoryUrl: '/category/investment-calculators',
+    categoryUrl: '/investment-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'compound-interest',
@@ -257,7 +257,7 @@ export const categories = {
     icon: '🏠',
     description: 'Make smart decisions about your biggest investment with comprehensive property analysis tools',
     color: 'linear-gradient(135deg, #10b981, #059669)',
-    categoryUrl: '/category/real-estate-calculators',
+    categoryUrl: '/real-estate-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'mortgage',
@@ -322,7 +322,7 @@ export const categories = {
     icon: '✈️',
     description: 'Plan major purchases and dream vacations without breaking your budget or going into debt',
     color: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
-    categoryUrl: '/category/travel-calculators',
+    categoryUrl: '/travel-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'vacation-savings',
@@ -364,7 +364,7 @@ export const categories = {
     icon: '🛡️',
     description: 'Protect your family and financial future with appropriate insurance coverage planning',
     color: 'linear-gradient(135deg, #f59e0b, #d97706)',
-    categoryUrl: '/category/insurance-calculators',
+    categoryUrl: '/insurance-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'life-insurance',
@@ -407,7 +407,7 @@ export const categories = {
     icon: '🔧',
     description: 'Handy financial tools and calculators for everyday money management tasks',
     color: 'linear-gradient(135deg, #06b6d4, #0891b2)',
-    categoryUrl: '/category/utilities-calculators',
+    categoryUrl: '/utilities-calculators',  // ✅ FIXED: Removed /category/ prefix
     calculators: [
       {
         id: 'days-between',

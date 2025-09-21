@@ -1,4 +1,4 @@
-// src/pages/HomePage.js
+// src/pages/HomePage.js - Keep this structure!
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/sections/HeroSection';
 import TrustedBySection from '../components/sections/TrustedBySection';

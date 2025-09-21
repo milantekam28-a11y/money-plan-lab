@@ -1,5 +1,6 @@
 // src/components/layout/Header.js
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -7,15 +8,26 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="nav-container">
-        <a href="#" className="logo">
+        <Link to="/" className="logo">
           <span className="logo-icon">🧮</span>
           Money Plan Lab
-        </a>
+        </Link>
         <ul className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
-          <li className="nav-item"><a href="#calculators">Investment calculators</a></li>
-          <li className="nav-item"><a href="#features">Real Estate calculators</a></li>
-          <li className="nav-item"><a href="#about">Travel calculators</a></li>
-          <li className="nav-item"><a href="#contact">Insurance calculators </a></li>
+          <li className="nav-item">
+            <Link to="/debt-calculators">Debt Calcu</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/budget-calculators">Budget Calcu</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/calculators">All Calculators</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/contact">Contact</Link>
+          </li>
         </ul>
         <div 
           className="mobile-toggle" 
@@ -70,6 +82,8 @@ const Header = () => {
           display: flex;
           list-style: none;
           gap: 32px;
+          margin: 0;
+          padding: 0;
         }
 
         .nav-item a {
@@ -78,6 +92,7 @@ const Header = () => {
           font-weight: 500;
           transition: color 0.3s ease;
           position: relative;
+          white-space: nowrap;
         }
 
         .nav-item a:hover {
@@ -114,6 +129,16 @@ const Header = () => {
         }
 
         /* Mobile Responsive */
+        @media (max-width: 1200px) {
+          .nav-menu {
+            gap: 20px;
+          }
+          
+          .nav-item a {
+            font-size: 0.9rem;
+          }
+        }
+
         @media (max-width: 768px) {
           .nav-menu {
             position: fixed;
@@ -127,10 +152,17 @@ const Header = () => {
             padding: 40px 20px;
             transition: left 0.3s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            gap: 24px;
           }
 
           .nav-menu.active {
             left: 0;
+          }
+
+          .nav-item a {
+            font-size: 1.1rem;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-200);
           }
 
           .mobile-toggle {

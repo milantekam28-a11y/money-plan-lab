@@ -1,4 +1,4 @@
-// src/components/sections/CalculatorSection.js
+// src/components/sections/CalculatorSection.js - Professional Upgrade
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { categories } from '../../data/categories';
@@ -7,102 +7,76 @@ const CalculatorSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="calculators" id="calculators">
+    <section className="calculators-section" id="calculators">
       <div className="calculators-container">
         <div className="section-header">
           <h2 className="section-title">Complete Financial Calculator Suite</h2>
           <p className="section-subtitle">Choose from our comprehensive collection of professional-grade financial tools designed to help you make smarter money decisions</p>
         </div>
 
-        {Object.entries(categories).map(([key, category]) => (
-          <div key={key} className={`category-section ${key}-category`}>
-            <div className="category-header" style={{ background: category.color }}>
-              <div className="category-icon">{category.icon}</div>
-              <div className="category-info">
-                <div className="category-title">{category.name}</div>
-                <div className="category-description">{category.description}</div>
-              </div>
-            </div>
-            
-            <div className="calculator-grid">
-              {category.calculators.map((calc) => (
-                <div 
-                  key={calc.id} 
-                  className="calculator-card"
-                  // NEW (CORRECT):
-                onClick={() => {
-                  // Navigate to category page first, not individual calculators
-                  if (category.categoryUrl) {
-                    navigate(category.categoryUrl);  // Goes to /debt-calculators
-                  } else if (calc.url.startsWith('/')) {
-                    navigate(calc.url);  // Fallback to individual calculator
-                  } else if (calc.url.startsWith('http')) {
-                    window.open(calc.url, '_blank');  // External URLs
-                  }
-                }}
-                >
-                  <div className="card-content">
-                    <div className="card-header">
-                      <div className="card-icon" style={{ background: category.color }}>
-                        <span>{calc.icon}</span>
-                      </div>
-                      <div>
-                        <h3 className="card-title">{calc.title}</h3>
-                        <p className="card-subtitle">{calc.subtitle}</p>
-                      </div>
-                    </div>
-                    <p className="card-description">{calc.description}</p>
-                    <ul className="card-features">
-                      {calc.features.map((feature, idx) => (
-                        <li key={idx}>
-                          <span className="feature-check">✓</span> {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="card-action">
-                      <span className="card-link">
-                        Explore Calculators
-                        <span className="arrow">→</span>
-                      </span>
-                    </div>
-                    <div className="card-tags">
-                      {calc.tags.map((tag, idx) => (
-                        <span 
-                          key={idx} 
-                          className={`tag ${calc.featured ? 'featured' : ''} ${calc.popular ? 'popular' : ''}`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+        <div className="categories-grid">
+          {Object.entries(categories).map(([key, category]) => (
+            <div 
+              key={key} 
+              className="category-card"
+              onClick={() => navigate(category.categoryUrl)}
+            >
+              <div className="category-background" style={{ background: category.color }}></div>
+              <div className="category-content">
+                <div className="category-icon">{category.icon}</div>
+                <h3 className="category-title">{category.name}</h3>
+                <p className="category-description">{category.description}</p>
+                
+                <div className="category-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">{category.calculators.length}</span>
+                    <span className="stat-label">Tools</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">
+                      {category.calculators.filter(calc => calc.featured || calc.status === 'active').length}
+                    </span>
+                    <span className="stat-label">Popular</span>
                   </div>
                 </div>
-              ))}
+                
+                <div className="popular-calculators">
+                  {category.calculators.filter(calc => calc.featured || calc.popular).slice(0, 3).map((calc, idx) => (
+                    <div key={idx} className="popular-calc">
+                      <span className="calc-icon">{calc.icon}</span>
+                      <span className="calc-name">{calc.title}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="category-action">
+                  <span>Explore All {category.name}</span>
+                  <span className="arrow">→</span>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
 
-            <div className="pro-tip">
-              <div className="pro-tip-header">
-                <span className="tip-icon">💡</span>
-                <span className="pro-tip-title">Pro Tip</span>
-              </div>
-              <div className="pro-tip-content">
-                {key === 'debt' && 'Focus on paying off high-interest debt first (debt avalanche) to save the most money, or use the debt snowball method if you need psychological wins to stay motivated. Both methods work - choose the one you\'ll stick with!'}
-                {key === 'budget' && 'Start with zero-based budgeting for maximum control. Always build your emergency fund before aggressive debt payoff or investing!'}
-                {key === 'investment' && 'Start investing early, even with small amounts. A 25-year-old investing $200/month will have more at retirement than a 35-year-old investing $400/month - that\'s the power of compound interest and time!'}
-                {key === 'realestate' && 'Follow the 28/36 rule: spend no more than 28% of gross income on housing and 36% on total debt payments. Remember, being "house poor" can derail your other financial goals!'}
-                {key === 'travel' && 'Save for major purchases and vacations in advance. This prevents debt accumulation and often allows you to take advantage of cash discounts or better deals!'}
-                {key === 'insurance' && 'Buy term life insurance and invest the difference. Whole life insurance is a poor investment - separate your insurance needs from your investment strategy for better results!'}
-                {key === 'utilities' && 'Use these handy tools to complement your main financial planning. The days calculator is especially useful for tracking savings goals and debt payoff timelines!'}
-              </div>
-            </div>
+        <div className="section-cta">
+          <div className="cta-content">
+            <h3>Need help choosing the right calculator?</h3>
+            <p>View all 25+ calculators in one place with filters and search functionality</p>
+            <button 
+              className="cta-button"
+              onClick={() => navigate('/calculators')}
+            >
+              View All Calculators
+              <span className="btn-arrow">→</span>
+            </button>
           </div>
-        ))}
+        </div>
       </div>
 
       <style jsx>{`
-        .calculators {
+        .calculators-section {
           padding: 100px 20px;
-          background: var(--white);
+          background: white;
         }
 
         .calculators-container {
@@ -118,330 +92,218 @@ const CalculatorSection = () => {
         .section-title {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 800;
-          color: var(--gray-900);
+          color: #1e293b;
           margin-bottom: 16px;
         }
 
         .section-subtitle {
           font-size: 1.25rem;
-          color: var(--gray-600);
-          max-width: 600px;
+          color: #64748b;
+          max-width: 700px;
           margin: 0 auto;
+          line-height: 1.6;
         }
 
-        .category-section {
+        .categories-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+          gap: 40px;
           margin-bottom: 80px;
         }
 
-        .category-header {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          margin-bottom: 40px;
-          padding: 30px;
-          color: white;
-          border-radius: 20px;
-          box-shadow: 0 15px 40px rgba(37, 99, 235, 0.2);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .category-icon {
-          font-size: 3rem;
-          opacity: 0.9;
-          min-width: 60px;
-        }
-
-        .category-info {
-          flex: 1;
-        }
-
-        .category-title {
-          font-size: 2rem;
-          font-weight: 700;
-          margin-bottom: 8px;
-        }
-
-        .category-description {
-          font-size: 1.1rem;
-          opacity: 0.9;
-          line-height: 1.5;
-        }
-
-        .calculator-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-          gap: 30px;
-        }
-
-        .calculator-card {
+        .category-card {
           background: white;
-          border-radius: 20px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          transition: all 0.3s ease;
+          border-radius: 24px;
+          padding: 40px 30px;
+          text-align: center;
           cursor: pointer;
-          border: 1px solid var(--gray-200);
+          transition: all 0.3s ease;
           position: relative;
+          overflow: hidden;
+          border: 2px solid #f1f5f9;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .calculator-card::before {
-          content: '';
+        .category-background {
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
-          height: 4px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          transition: all 0.3s ease;
-        }
-
-        .calculator-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .calculator-card:hover::before {
           height: 6px;
+          border-radius: 24px 24px 0 0;
         }
 
-        .card-content {
-          padding: 35px;
+        .category-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+          border-color: rgba(102, 126, 234, 0.2);
         }
 
-        .card-header {
-          display: flex;
-          align-items: flex-start;
-          gap: 20px;
-          margin-bottom: 24px;
+        .category-content {
+          position: relative;
+          z-index: 2;
         }
 
-        .card-icon {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, var(--primary), var(--secondary));
-          border-radius: 16px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          font-size: 1.5rem;
-          color: white;
+        .category-icon {
+          font-size: 3.5rem;
+          margin-bottom: 20px;
+          display: block;
         }
 
-        .card-title {
+        .category-title {
           font-size: 1.5rem;
           font-weight: 700;
-          color: var(--gray-900);
-          margin-bottom: 8px;
-          line-height: 1.3;
+          color: #1e293b;
+          margin-bottom: 12px;
         }
 
-        .card-subtitle {
-          color: var(--primary);
-          font-weight: 600;
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .card-description {
-          color: var(--gray-600);
+        .category-description {
+          color: #64748b;
           line-height: 1.6;
           margin-bottom: 24px;
+          font-size: 1rem;
         }
 
-        .card-features {
-          list-style: none;
+        .category-stats {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin-bottom: 24px;
+          padding: 20px 0;
+          border-top: 1px solid #f1f5f9;
+          border-bottom: 1px solid #f1f5f9;
+        }
+
+        .stat-item {
+          text-align: center;
+        }
+
+        .stat-number {
+          display: block;
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: #667eea;
+          margin-bottom: 4px;
+        }
+
+        .stat-label {
+          font-size: 0.9rem;
+          color: #94a3b8;
+          font-weight: 500;
+        }
+
+        .popular-calculators {
           margin-bottom: 24px;
         }
 
-        .card-features li {
+        .popular-calc {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
           margin-bottom: 8px;
-          color: var(--gray-600);
+          color: #475569;
           font-size: 0.9rem;
+          justify-content: center;
         }
 
-        .feature-check {
-          color: var(--success);
-          font-weight: bold;
-          font-size: 0.8rem;
+        .calc-icon {
+          font-size: 1.1rem;
         }
 
-        .card-action {
+        .calc-name {
+          font-weight: 500;
+        }
+
+        .category-action {
+          color: #667eea;
+          font-weight: 600;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-top: 20px;
-        }
-
-        .card-link {
-          color: var(--primary);
-          font-weight: 600;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
           gap: 8px;
-          transition: all 0.3s ease;
+          transition: gap 0.2s ease;
         }
 
-        .card-link:hover {
+        .category-card:hover .category-action {
           gap: 12px;
         }
 
         .arrow {
-          transition: transform 0.3s ease;
+          transition: transform 0.2s ease;
         }
 
-        .card-link:hover .arrow {
+        .category-card:hover .arrow {
           transform: translateX(4px);
         }
 
-        .card-tags {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          margin-top: 16px;
+        .section-cta {
+          text-align: center;
+          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+          padding: 60px 40px;
+          border-radius: 24px;
+          border: 2px solid #e2e8f0;
         }
 
-        .tag {
-          background: var(--gray-100);
-          color: var(--gray-600);
-          padding: 6px 12px;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 500;
+        .cta-content h3 {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #1e293b;
+          margin-bottom: 12px;
         }
 
-        .tag.featured {
-          background: var(--primary);
-          color: white;
+        .cta-content p {
+          color: #64748b;
+          font-size: 1.1rem;
+          margin-bottom: 30px;
+          line-height: 1.6;
         }
 
-        .tag.popular {
-          background: var(--accent);
-          color: white;
-        }
-
-        /* Category-specific colors */
-        .debt-category .calculator-card::before {
-          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
-        }
-
-        .debt-category .card-icon {
-          background: linear-gradient(135deg, var(--danger), var(--danger-dark));
-        }
-
-        .budget-category .calculator-card::before {
-          background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-        }
-
-        .budget-category .card-icon {
-          background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-        }
-
-        .realestate-category .calculator-card::before {
-          background: linear-gradient(135deg, var(--success), var(--secondary));
-        }
-
-        .realestate-category .card-icon {
-          background: linear-gradient(135deg, var(--success), var(--secondary));
-        }
-
-        .travel-category .calculator-card::before {
-          background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-        }
-
-        .travel-category .card-icon {
-          background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-        }
-
-        .insurance-category .calculator-card::before {
-          background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .insurance-category .card-icon {
-          background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .utilities-category .calculator-card::before {
-          background: linear-gradient(135deg, #06b6d4, #0891b2);
-        }
-
-        .utilities-category .card-icon {
-          background: linear-gradient(135deg, #06b6d4, #0891b2);
-        }
-
-        /* Pro Tip Section */
-        .pro-tip {
-          background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
-          border-left: 4px solid var(--accent);
-          padding: 20px;
-          margin: 20px 0;
-          border-radius: 10px;
-        }
-
-        .pro-tip-header {
-          display: flex;
+        .cta-button {
+          display: inline-flex;
           align-items: center;
-          gap: 10px;
-          margin-bottom: 10px;
-        }
-
-        .tip-icon {
-          color: var(--accent);
-          font-size: 1.2rem;
-        }
-
-        .pro-tip-title {
+          gap: 12px;
+          padding: 16px 32px;
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          border-radius: 16px;
           font-weight: 600;
-          color: var(--gray-800);
+          font-size: 1.1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
-        .pro-tip-content {
-          color: var(--gray-600);
-          font-size: 0.95rem;
-          line-height: 1.5;
+        .cta-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-arrow {
+          transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .btn-arrow {
+          transform: translateX(5px);
         }
 
         /* Mobile Responsive */
-        @media (max-width: 1024px) {
-          .calculator-grid {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          }
-        }
-
         @media (max-width: 768px) {
-          .calculators {
+          .calculators-section {
             padding: 80px 20px;
           }
 
-          .calculator-grid {
+          .categories-grid {
             grid-template-columns: 1fr;
+            gap: 30px;
           }
 
-          .category-header {
-            flex-direction: column;
-            text-align: center;
-            gap: 16px;
-            padding: 25px;
+          .category-stats {
+            gap: 20px;
           }
 
-          .category-icon {
-            font-size: 2.5rem;
-          }
-
-          .category-title {
-            font-size: 1.6rem;
-          }
-
-          .card-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
+          .section-cta {
+            padding: 40px 20px;
           }
         }
       `}</style>
